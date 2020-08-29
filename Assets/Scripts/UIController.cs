@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,12 +10,18 @@ public class UIController : MonoBehaviour
     public GameObject InventoryPanel;
     public GameObject LogPanel;
 
+    public GameObject RightPanel;
+
     public GameObject SelectedLocationName;
 
     private GameObject activePanel;
 
     private Room selectedRoom;
 
+    public GameObject FurniturePanelPrefab;
+
+
+    private Dictionary<GameObject, Furniture> furnitureReference;
 
     // Start is called before the first frame update
     void Start()
@@ -62,5 +69,31 @@ public class UIController : MonoBehaviour
     {
         selectedRoom = newRoom;
         ((Text)SelectedLocationName.GetComponent("Text")).text = selectedRoom.Name;
+        furnitureReference = new Dictionary<GameObject, Furniture>();
+
+        foreach(Furniture f in selectedRoom.furnitures)
+        {
+            GameObject furniture = GameObject.Instantiate(FurniturePanelPrefab, RightPanel.transform);
+            ((Text)furniture.GetComponentInChildren<Text>()).text = f.Name;
+            ((Button)furniture.GetComponent<Button>()).onClick.AddListener(delegate{ ShowFurnitureItems(furniture); });
+            furnitureReference.Add(furniture, f);
+        }
+    }
+    public void ShowFurnitureItems(GameObject furniturePanel)
+    {
+        Furniture furniture;
+        if(!furnitureReference.TryGetValue(furniturePanel,out furniture))
+        {
+            Debug.LogError("Nie znaleziono mebla!!!");
+        }
+        
+
+        foreach (Item i in furniture.items)
+        {
+            GameObject item = new GameObject();
+            Text t = item.AddComponent(typeof(Text)) as Text;
+            t.text = i.Name;
+            item.transform.SetParent(furniturePanel.transform);
+        }
     }
 }
