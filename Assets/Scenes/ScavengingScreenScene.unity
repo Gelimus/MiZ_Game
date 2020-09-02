@@ -2464,7 +2464,7 @@ GameObject:
   - component: {fileID: 1642799383}
   - component: {fileID: 1642799385}
   m_Layer: 5
-  m_Name: Right Panel
+  m_Name: RightPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2545,7 +2545,7 @@ MonoBehaviour:
     m_Top: 20
     m_Bottom: 20
   m_ChildAlignment: 0
-  m_Spacing: 20
+  m_Spacing: 10
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
@@ -2565,7 +2565,7 @@ GameObject:
   - component: {fileID: 1673948764}
   - component: {fileID: 1673948763}
   m_Layer: 5
-  m_Name: Clock Panel
+  m_Name: ClockPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2717,7 +2717,7 @@ GameObject:
   - component: {fileID: 1831000843}
   - component: {fileID: 1831000842}
   m_Layer: 5
-  m_Name: Left Panel
+  m_Name: LeftPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2814,6 +2814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d237ddf784c7f9f4cb59dee557b320fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   PartyPanel: {fileID: 1972561633}
   InventoryPanel: {fileID: 1277848284}
   LogPanel: {fileID: 2069225078}
@@ -3309,7 +3310,7 @@ GameObject:
   - component: {fileID: 2026201038}
   - component: {fileID: 2026201039}
   m_Layer: 5
-  m_Name: Button Panel
+  m_Name: ButtonPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
