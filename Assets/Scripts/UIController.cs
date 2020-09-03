@@ -119,12 +119,11 @@ public class UIController : MonoBehaviour
         foreach(Furniture f in selectedRoom.furnitures)
         {
             
-            GameObject furniture = GameObject.Instantiate(FurniturePanelPrefab, RightPanel.transform);
-            ((Text)furniture.GetComponentInChildren<Text>()).text = f.Name;
-            ((Button)furniture.GetComponent<Button>()).onClick.RemoveAllListeners();
-            ((Button)furniture.GetComponent<Button>()).onClick.AddListener(delegate { ShowFurnitureItems(furniture); });
+            GameObject furniturePanel = GameObject.Instantiate(FurniturePanelPrefab, RightPanel.transform);
+            ((Text)furniturePanel.GetComponentInChildren<Text>()).text = f.Name;
+            ((Button)furniturePanel.GetComponentInChildren<Button>()).onClick.AddListener(delegate { ShowFurnitureItems(furniturePanel); });
 
-            furnitureReference.Add(furniture, f);
+            furnitureReference.Add(furniturePanel, f);
         }
     }
 
@@ -144,7 +143,7 @@ public class UIController : MonoBehaviour
         {
             TMPFixForStupidBUG = 0.001f;
         }
-
+        
         if (furniturePanel.transform.childCount < 2)
         {
             Furniture furniture;

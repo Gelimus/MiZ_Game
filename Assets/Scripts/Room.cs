@@ -44,10 +44,11 @@ public class Room
         items.Add(new Item("Book: Witcher"));
         items.Add(new Item("Family Photo"));
         items.Add(new Item("Bottle of Beer"));
+        items.Add(new Item("Beautiful green plant"));
         furnitures.Add(new Furniture("Table",items));
-        furnitures.Add(new Furniture("Mirror"));
-        furnitures.Add(new Furniture("Chair"));
-        furnitures.Add(new Furniture("Lamp"));
+        furnitures.Add(new Furniture("Mirror",items));
+        furnitures.Add(new Furniture("Chair",items));
+        furnitures.Add(new Furniture("Lamp",items));
         //END FOR TESTING
 
     }
