@@ -22,6 +22,7 @@ public class KeyboardMouseController : MonoBehaviour
         float scroll = -Input.mouseScrollDelta.y;
         if (scroll!=0)
         {
+            
             ((CameraMover)Camera.main.GetComponent("CameraMover")).ZoomMe(scroll);
         }
     }

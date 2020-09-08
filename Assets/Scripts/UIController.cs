@@ -76,7 +76,7 @@ public class UIController : MonoBehaviour
     /// </summary>
     private Room selectedRoom;
 
-    
+    static private Party currentParty;
 
     /// <summary>
     /// A dictionary holding a link between a data model of a furniture and the UI element in the RightPanel representing it.
@@ -92,6 +92,7 @@ public class UIController : MonoBehaviour
         mF = mainFont;
         //FOR TESTING PURPOSES, fake room selected
         ChangeSelectedRoom(new Room("Bedroom"));
+        currentParty = new Party();
     }
 
     // Update is called once per frame
@@ -101,6 +102,10 @@ public class UIController : MonoBehaviour
         if (TMPFixForStupidBUG > 0f)
         {
             TMPFixForStupidBUG -= Time.deltaTime;
+        }
+        if (itemDoubleClickTimer > 0f)
+        {
+            itemDoubleClickTimer -= Time.deltaTime;
         }
     }
 
@@ -157,14 +162,19 @@ public class UIController : MonoBehaviour
             vLG.spacing = 5;
             vLG.childForceExpandHeight = false;
             fc.transform.SetParent(furniturePanel.transform);
-            foreach (Item i in furniture.items)
+            for (int index = 0; index < furniture.items.Count; index++)
             {
-                GameObject item = new GameObject();
+                Item i = furniture.items[index];
+                GameObject item = new GameObject(index.ToString());
                 Text t = item.AddComponent(typeof(Text)) as Text;
                 t.text = i.Name;
                 t.font = mF;
                 t.fontSize = 12;
                 item.transform.SetParent(fc.transform);
+
+                Button b = item.AddComponent(typeof(Button)) as Button;
+                b.onClick.AddListener(delegate { OnItemClicked(item); });
+
             }
         }
         else
@@ -174,9 +184,63 @@ public class UIController : MonoBehaviour
 
     }
 
+    private static float itemDoubleClickTimer;
+    public static void OnItemClicked(GameObject itemPanel)
+    {
+        if (itemDoubleClickTimer <= 0)
+        {
+            itemDoubleClickTimer = 0.5f;
+        }
+        else
+        {
+            CollectItem(itemPanel);
+        }
+    }
+
+    public static void CollectItem(GameObject itemPanel)
+    {
+        Furniture furniture;
+        GameObject furniturePanel = itemPanel.transform.parent.parent.gameObject;
+        if (!furnitureReference.TryGetValue(furniturePanel, out furniture))
+        {
+            Debug.LogError("Nie znaleziono mebla!!!");
+        }
+
+        int itemNumber = Int32.Parse(itemPanel.name);
+        Item i = furniture.items[itemNumber];
+        currentParty.AddItemToInventory(i);
+        itemPanel.transform.SetParent(null); 
+        GameObject.Destroy(itemPanel);
+
+        Transform furnitureContents = furniturePanel.transform.GetChild(1);
+        for (int index = itemNumber; index < furnitureContents.childCount; index++)
+        {
+            furnitureContents.GetChild(index).gameObject.name = index.ToString();
+        }
 
 
 
+    }
+
+    public void UpdateInventoryPanel()
+    {
+        Debug.Log("I am in");
+        while (InventoryPanel.transform.childCount > 0)
+        {
+            GameObject item = InventoryPanel.transform.GetChild(0).gameObject;
+            item.transform.SetParent(null);
+            GameObject.Destroy(item);
+        }
+        foreach (Item i in currentParty.Inventory)
+        {
+            GameObject item = new GameObject();
+            Text t = item.AddComponent(typeof(Text)) as Text;
+            t.text = i.Name;
+            t.font = mF;
+            t.fontSize = 12;
+            item.transform.SetParent(InventoryPanel.transform);
+        }
+    }
     /// <summary>
     /// A function for setting the active page on the left panel to the InventoryPanel
     /// </summary>
@@ -187,6 +251,7 @@ public class UIController : MonoBehaviour
             activePanel.SetActive(false);
             activePanel = InventoryPanel;
             activePanel.SetActive(true);
+            UpdateInventoryPanel();
         }
     }
     /// <summary>

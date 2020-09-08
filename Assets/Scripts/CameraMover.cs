@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraMover : MonoBehaviour
 {
     //A variable for controlling camera zoom speed
-    private int zoomSpeed;
+    private int zoomSpeed=20;
     /// <summary>
     /// A function used for moving the camera.
     /// TODO: Make sure the camera is constrained so it never moves to far from the map.
@@ -34,6 +34,7 @@ public class CameraMover : MonoBehaviour
         {
             return;
         }
+        
         float oldSize= ((Camera)GetComponent("Camera")).orthographicSize;
         ((Camera)GetComponent("Camera")).orthographicSize = Mathf.Lerp(oldSize, oldSize+ scroll*zoomSpeed,Time.deltaTime);
     }
