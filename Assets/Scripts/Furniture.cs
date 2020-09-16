@@ -35,4 +35,12 @@ public class Furniture
         Name = name;
         this.items = items;
     }
+
+    public Item RemoveItemAtIndex(int index)
+    {
+        Item returnItem = items[index];
+
+        items.RemoveAt(index);
+        return returnItem;
+    }
 }

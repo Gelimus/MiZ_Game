@@ -7,46 +7,50 @@ public class ClockController : MonoBehaviour
 {
     class Timer
     {
-        private static float seconds;
+
+
+    
         public static float Seconds
         {
-            get { return seconds; }
+            get;
+            private set;
         }
         public static int setSeconds(float newSeconds)
         {
-            seconds = newSeconds;
-            int extraMinutes = (int)(seconds / 60f);
-            seconds = seconds - extraMinutes * 60;
+            Seconds = newSeconds;
+            int extraMinutes = (int)(Seconds / 60f);
+
+            Seconds -= extraMinutes * 60;
             return setMinutes(Minutes + extraMinutes);
         }
-        private static int minutes;
         public static int Minutes
         {
-            get { return minutes; }
+            get;
+            private set;
         }
         public static int setMinutes(int newMinutes)
         {
-            minutes = newMinutes;
-            int changedDays = setHours(Hours+minutes / 60);
-            minutes = minutes % 60;
+            Minutes = newMinutes;
+            int changedDays = setHours(Hours+Minutes / 60);
+            Minutes = Minutes % 60;
 
             return changedDays;
         }
 
-        private static int hours;
         public static int Hours
         {
-            get { return hours; }
+            get;
+            private set;
         }
 
         public static int setHours(int newHour)
         {
             int changedDays = 0;
 
-            hours = newHour;
-            changedDays = hours/24;
+            Hours = newHour;
+            changedDays = Hours/24;
 
-            hours = hours % 24;
+            Hours = Hours % 24;
 
             return changedDays;
         }

@@ -1618,17 +1618,17 @@ PrefabInstance:
     - target: {fileID: 7827958659776104623, guid: fe75dfebfe38b6545843d40e071b7a46,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 125
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7827958659776104623, guid: fe75dfebfe38b6545843d40e071b7a46,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -45
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7827958659776104623, guid: fe75dfebfe38b6545843d40e071b7a46,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 210
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7827958659776104623, guid: fe75dfebfe38b6545843d40e071b7a46,
         type: 3}
@@ -1643,7 +1643,7 @@ PrefabInstance:
     - target: {fileID: 7827958659776104623, guid: fe75dfebfe38b6545843d40e071b7a46,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7827958659776104623, guid: fe75dfebfe38b6545843d40e071b7a46,
         type: 3}
@@ -1653,7 +1653,7 @@ PrefabInstance:
     - target: {fileID: 7827958659776104623, guid: fe75dfebfe38b6545843d40e071b7a46,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7827958659776104623, guid: fe75dfebfe38b6545843d40e071b7a46,
         type: 3}
@@ -2036,7 +2036,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1277848285
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2074,7 +2074,7 @@ MonoBehaviour:
     m_Top: 20
     m_Bottom: 20
   m_ChildAlignment: 0
-  m_Spacing: 20
+  m_Spacing: 5
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
@@ -3052,9 +3052,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-  PartyPanel: {fileID: 1972561633}
-  InventoryPanel: {fileID: 1277848284}
-  LogPanel: {fileID: 2069225078}
   RightPanel: {fileID: 1016736531}
   SelectedLocationName: {fileID: 1139116739}
   FurniturePanelPrefab: {fileID: 7921117957504182484, guid: 8f3179105dfed954a927a728ce9e0014,
@@ -3663,7 +3660,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2069225079
 MonoBehaviour:
   m_ObjectHideFlags: 0

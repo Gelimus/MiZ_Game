@@ -28,20 +28,20 @@ public class UIController : MonoBehaviour
     /// A reference to the GameObject representing the page of the LeftPanel, 
     /// that shows all characters on the current scavenging mission.
     /// </summary>
-    public GameObject PartyPanel;
+    private static GameObject PartyPanel;
 
     /// <summary>
     /// A reference to the GameObject representing the page of the LeftPanel, 
     /// that shows all items in the inventory of all characters on the current 
     /// scavenging mission.
     /// </summary>
-    public GameObject InventoryPanel;
+    private static GameObject InventoryPanel;
 
     /// <summary>
     /// A reference to the GameObject representing the page of the LeftPanel, 
     /// that shows all events that happened on the current expedition
     /// </summary>
-    public GameObject LogPanel;
+    private static GameObject LogPanel;
 
     /// <summary>
     /// A reference to the GameObject representing the RightPanel, 
@@ -69,7 +69,7 @@ public class UIController : MonoBehaviour
     /// it should always be either the PartyPanel, the InventoryPanel,
     /// or the LogPanel
     /// </summary>
-    private GameObject activePanel;
+    private static GameObject activePanel;
 
     /// <summary>
     /// The currently selected room to be displayed on the right panel.
@@ -86,8 +86,14 @@ public class UIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PartyPanel = GameObject.Find("PartyPanel");
+        InventoryPanel = GameObject.Find("InventoryPanel");
+        LogPanel = GameObject.Find("LogPanel");
+
         //Setting the activePanel to the PartyPanel as a default state.
         activePanel = PartyPanel;
+        InventoryPanel.SetActive(false);
+        LogPanel.SetActive(false);
         //TODO: part of the cleaning of the double font variable.
         mF = mainFont;
         //FOR TESTING PURPOSES, fake room selected
@@ -207,24 +213,33 @@ public class UIController : MonoBehaviour
         }
 
         int itemNumber = Int32.Parse(itemPanel.name);
-        Item i = furniture.items[itemNumber];
+        Item i = furniture.RemoveItemAtIndex(itemNumber);
         currentParty.AddItemToInventory(i);
+
         itemPanel.transform.SetParent(null); 
         GameObject.Destroy(itemPanel);
 
+
         Transform furnitureContents = furniturePanel.transform.GetChild(1);
+        if (furnitureContents.childCount == 0)
+        {
+            furnitureContents.transform.SetParent(null);
+            Destroy(furnitureContents.gameObject);
+        }
         for (int index = itemNumber; index < furnitureContents.childCount; index++)
         {
             furnitureContents.GetChild(index).gameObject.name = index.ToString();
         }
 
-
+        if (InventoryPanel.activeSelf)
+        {
+            UpdateInventoryPanel();
+        }
 
     }
 
-    public void UpdateInventoryPanel()
+    public static void UpdateInventoryPanel()
     {
-        Debug.Log("I am in");
         while (InventoryPanel.transform.childCount > 0)
         {
             GameObject item = InventoryPanel.transform.GetChild(0).gameObject;

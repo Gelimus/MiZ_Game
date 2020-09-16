@@ -7,7 +7,9 @@ using UnityEngine;
 public class CameraMover : MonoBehaviour
 {
     //A variable for controlling camera zoom speed
-    private int zoomSpeed=20;
+    private int zoomSpeed=40;
+    //A variable used for controlling camera movement speed
+    private int moveSpeed = 300;
     /// <summary>
     /// A function used for moving the camera.
     /// TODO: Make sure the camera is constrained so it never moves to far from the map.
@@ -16,8 +18,11 @@ public class CameraMover : MonoBehaviour
     /// <param name="ver">A parameter indicating the amount of movement in the Y axis (vertical)</param>
     public void MoveMeBaby(float hor, float ver)
     {
-
-        transform.position = new Vector3(transform.position.x + hor, transform.position.y + ver, transform.position.z);
+        //TODO: Implement checks to aboid moving camera to far from the map.
+        float horMov = Mathf.Lerp(transform.position.x, transform.position.x+hor*moveSpeed, Time.deltaTime);
+        float verMov = Mathf.Lerp(transform.position.y, transform.position.y+ver*moveSpeed, Time.deltaTime);
+        
+        transform.position = new Vector3(horMov, verMov, transform.position.z);
     }
 
     /// <summary>
