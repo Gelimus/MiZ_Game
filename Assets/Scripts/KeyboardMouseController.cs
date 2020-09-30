@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -8,8 +9,8 @@ public class KeyboardMouseController : MonoBehaviour
 {
     Vector3 oldMousePosition;
     //The higher number the less sensitive the pan. Used for panning by mouse dragging
-    int cameraPanSensivity = 120;
-
+    int cameraPanSensitivity = 120;
+    bool dragStarted = false;
     void Update()
     {
         //A part of code for moving detecting the pressing of arrow ar WASD keys.
@@ -26,38 +27,47 @@ public class KeyboardMouseController : MonoBehaviour
         float scroll = -Input.mouseScrollDelta.y;
         if (scroll != 0)
         {
-            PointerEventData pointerData = new PointerEventData(EventSystem.current);
-            pointerData.position = Input.mousePosition;
-
-            List<RaycastResult> results = new List<RaycastResult>();
-            EventSystem.current.RaycastAll(pointerData, results);
-
-            //foreach (RaycastResult result in results)
-            //{
-            //    Debug.Log("Hit " + result.gameObject.name);
-            //}
-
-            if (results.Count == 0)
+            if (!CheckIfOverUI())
             {
                 ((CameraMover)Camera.main.GetComponent("CameraMover")).ZoomMe(scroll);
             }
             
         }
-
-
-        if (Input.GetMouseButtonDown(0))
+        
+        if (!CheckIfOverUI())
         {
-            oldMousePosition = Input.mousePosition;
+            if (Input.GetMouseButtonDown(0))
+            {
+                oldMousePosition = Input.mousePosition;
+                dragStarted = true;
+            }
         }
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && dragStarted)
         {
             
-            hor = (oldMousePosition.x-Input.mousePosition.x)/cameraPanSensivity;
-            ver = (oldMousePosition.y-Input.mousePosition.y)/cameraPanSensivity;
+            hor = (oldMousePosition.x-Input.mousePosition.x)/cameraPanSensitivity;
+            ver = (oldMousePosition.y-Input.mousePosition.y)/cameraPanSensitivity;
             
             ((CameraMover)Camera.main.GetComponent("CameraMover")).MoveMeBaby(hor, ver);
             oldMousePosition = Input.mousePosition;
         }
+        if (Input.GetMouseButtonUp(0))
+        {
+             dragStarted = false;
+        }
+       
+    }
+    private bool CheckIfOverUI()
+    {
+        PointerEventData pointerData = new PointerEventData(EventSystem.current);
+        pointerData.position = Input.mousePosition;
 
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerData, results);
+        if (results.Count == 0)
+        {
+            return false;
+        }
+        return true;
     }
 }

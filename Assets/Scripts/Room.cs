@@ -17,7 +17,11 @@ public class Room
     /// The list of every furniture in the room.
     /// </summary>
     public List<Furniture> furnitures { get; private set; }
-   
+
+
+    public readonly Tile[][] map; //jagged array
+
+
     /// <summary>
     /// The constructor that uses the category to create a name for this room;
     /// TODO: based on the category and maybe some other tags (like rich, children, toys etc.) 
