@@ -131,8 +131,22 @@ public class UIController : MonoBehaviour
         {
             
             GameObject furniturePanel = GameObject.Instantiate(FurniturePanelPrefab, RightPanel.transform);
-            ((Text)furniturePanel.GetComponentInChildren<Text>()).text = f.Name;
+            ((Text)furniturePanel.GetComponentInChildren<Text>()).text = f.furnitureType.Name;
             ((Button)furniturePanel.GetComponentInChildren<Button>()).onClick.AddListener(delegate { ShowFurnitureItems(furniturePanel); });
+
+            foreach(FurnitureAction fa in f.furnitureType.actions)
+            {
+                GameObject actionButton = new GameObject(fa.GetType().Name);
+                Image i = actionButton.AddComponent<Image>();
+                Debug.Log("Sprites/UIElements/FurnitureActions/" + fa.GetType().Name.ToLower());
+
+                Debug.Log(Resources.Load<Texture2D>("Assets/Sprites/UIElements/FurnitureActions/searchaction.png"));
+//Texture2D tex = Resources.Load<Texture2D>("Sprites/UIElements/FurnitureActions/searchaction.png");
+                //Texture2D tex = Resources.Load<Texture2D>("Assets/Sprites/UIElements/FurnitureActions/" + fa.GetType().Name.ToLower()+".png");
+              //  Debug.Log(tex.name);
+               // i.sprite = Sprite.Create(tex,new Rect(0f,0f,tex.width,tex.height),Vector2.zero,100f);
+                actionButton.transform.SetParent(furniturePanel.transform.Find("NotContents").Find("ActionsButtons"));
+            }
 
             furnitureReference.Add(furniturePanel, f);
         }
@@ -168,20 +182,34 @@ public class UIController : MonoBehaviour
             vLG.spacing = 5;
             vLG.childForceExpandHeight = false;
             fc.transform.SetParent(furniturePanel.transform);
-            for (int index = 0; index < furniture.items.Count; index++)
+            if (furniture.contentsVisible())
             {
-                Item i = furniture.items[index];
-                GameObject item = new GameObject(index.ToString());
+                for (int index = 0; index < furniture.items.Count; index++)
+                {
+                    Item i = furniture.items[index];
+                    GameObject item = new GameObject(index.ToString());
+                    Text t = item.AddComponent(typeof(Text)) as Text;
+                    t.text = i.Name;
+                    t.font = mF;
+                    t.fontSize = 12;
+                    item.transform.SetParent(fc.transform);
+
+                    Button b = item.AddComponent(typeof(Button)) as Button;
+                    b.onClick.AddListener(delegate { OnItemClicked(item); });
+
+                }
+            }
+            else
+            {
+                GameObject item = new GameObject("Unsearched");
                 Text t = item.AddComponent(typeof(Text)) as Text;
-                t.text = i.Name;
+                t.text = "Unsearched";
                 t.font = mF;
                 t.fontSize = 12;
                 item.transform.SetParent(fc.transform);
-
-                Button b = item.AddComponent(typeof(Button)) as Button;
-                b.onClick.AddListener(delegate { OnItemClicked(item); });
-
             }
+
+
         }
         else
         {

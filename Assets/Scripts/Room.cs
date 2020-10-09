@@ -43,16 +43,26 @@ public class Room
         items.Add(new Item("Pillow"));
         items.Add(new Item("Knife"));
 
-        furnitures.Add(new Furniture("Bed",items));
+        List<FurnitureAction> actions=new List<FurnitureAction>();
+        actions.Add(new SearchAction());
+
+        FurnitueType bed = new FurnitueType("Bed",actions);
+        FurnitueType table = new FurnitueType("Table", actions);
+        FurnitueType mirror = new FurnitueType("Mirror", actions);
+        FurnitueType chair = new FurnitueType("Chair", actions);
+        FurnitueType lamp = new FurnitueType("Lamp", actions);
+
+
+        furnitures.Add(new Furniture(bed,items));
         items = new List<Item>();
         items.Add(new Item("Book: Witcher"));
         items.Add(new Item("Family Photo"));
         items.Add(new Item("Bottle of Beer"));
         items.Add(new Item("Beautiful green plant"));
-        furnitures.Add(new Furniture("Table",items));
-        furnitures.Add(new Furniture("Mirror",items));
-        furnitures.Add(new Furniture("Chair",items));
-        furnitures.Add(new Furniture("Lamp",items));
+        furnitures.Add(new Furniture(table,items));
+        furnitures.Add(new Furniture(mirror,items));
+        furnitures.Add(new Furniture(chair,items));
+        furnitures.Add(new Furniture(lamp,items));
         //END FOR TESTING
 
     }

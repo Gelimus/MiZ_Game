@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class Furniture 
 {
-    /// <summary>
-    /// The name of the piece of furniture in a form that is GUI friendly and can be displayed on screen.
-    /// </summary>
-    public string Name { get; private set; }
-
+    public FurnitueType furnitureType;
     /// <summary>
     /// The list of every item in the room.
     /// </summary>
@@ -19,9 +15,9 @@ public class Furniture
     /// Name should be auto genereted as should be the items.
     /// </summary>
     /// <param name="name"></param>
-    public Furniture(string name)
+    public Furniture(FurnitueType ft)
     {
-        Name = name;
+        furnitureType = ft;
     }
 
     /// <summary>
@@ -30,9 +26,9 @@ public class Furniture
     /// </summary>
     /// <param name="name"></param>
     /// <param name="items"></param>
-    public Furniture(string name,List<Item> items)
+    public Furniture(FurnitueType ft,List<Item> items)
     {
-        Name = name;
+        furnitureType = ft;
         this.items = items;
     }
 
@@ -43,4 +39,19 @@ public class Furniture
         items.RemoveAt(index);
         return returnItem;
     }
+
+    public bool contentsVisible()
+    {
+        foreach(FurnitureAction fa in furnitureType.actions)
+        {
+            if (fa.GetType().Name == "SearchAction")
+            {
+                return ((SearchAction)fa).isSearched();
+            }
+        }
+
+        Debug.LogWarning("Furniture without search action");
+        return true;
+    }
+
 }
