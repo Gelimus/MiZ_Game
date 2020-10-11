@@ -11,9 +11,10 @@ public class SearchAction: FurnitureAction
         if (!searched)
         {
             //TODO: Check if a character is in the same Room as the Furniture
-
+            DisableAction();
             searched = true;
         }
+        base.performAction();
     }
 
     public bool isSearched()
