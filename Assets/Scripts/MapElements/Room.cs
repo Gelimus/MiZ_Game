@@ -67,7 +67,10 @@ public class Room
 
     }
 
-
+    public Room(Tile[][] map)
+    {
+        this.map = map;
+    }
 
 
 }
