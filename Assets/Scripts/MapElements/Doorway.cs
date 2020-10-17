@@ -18,7 +18,9 @@ public class Doorway
     public Doorway(bool door)
     {
         hasDoor = door;
-            if(Random.Range(0, doorClosedProbabilityWeight+doorOpenedProbabilityWeight)<doorOpenedProbabilityWeight)
+        if (hasDoor)
+        {
+            if (Random.Range(0, doorClosedProbabilityWeight + doorOpenedProbabilityWeight) < doorOpenedProbabilityWeight)
             {
                 isOpened = true;
             }
@@ -26,6 +28,13 @@ public class Doorway
             {
                 isOpened = false;
             }
+        }
+        else
+        {
+            isOpened = true;
+        }
+        
+           
     }
 
     public void OpenDoor()

@@ -31,16 +31,16 @@ public class CameraMover : MonoBehaviour
     /// <param name="scroll">A parameter indicating the value of the zoom.</param>
     public void ZoomMe(float scroll)
     {
-        if(((Camera)GetComponent("Camera")).orthographicSize<=2f && scroll<0 )
+         if(((Camera)GetComponent("Camera")).orthographicSize<=2f && scroll < 0 )
         {
             return;
         }
-        else if(((Camera)GetComponent("Camera")).orthographicSize >= 10f && scroll > 0)
+        else if (((Camera)GetComponent("Camera")).orthographicSize >= 10f && scroll > 0)
         {
             return;
         }
         
-        float oldSize= ((Camera)GetComponent("Camera")).orthographicSize;
+        float oldSize = ((Camera)GetComponent("Camera")).orthographicSize;
         ((Camera)GetComponent("Camera")).orthographicSize = Mathf.Lerp(oldSize, oldSize+ scroll*zoomSpeed,Time.deltaTime);
     }
 }

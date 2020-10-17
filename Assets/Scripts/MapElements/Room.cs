@@ -45,11 +45,18 @@ public class Room
 
         List<FurnitureAction> actions=new List<FurnitureAction>();
         actions.Add(new SearchAction());
-
         FurnitueType bed = new FurnitueType("Bed",actions);
+        actions = new List<FurnitureAction>();
+        actions.Add(new SearchAction());
         FurnitueType table = new FurnitueType("Table", actions);
+        actions = new List<FurnitureAction>();
+        actions.Add(new SearchAction());
         FurnitueType mirror = new FurnitueType("Mirror", actions);
+        actions = new List<FurnitureAction>();
+        actions.Add(new SearchAction());
         FurnitueType chair = new FurnitueType("Chair", actions);
+        actions = new List<FurnitureAction>();
+        actions.Add(new SearchAction());
         FurnitueType lamp = new FurnitueType("Lamp", actions);
 
 
