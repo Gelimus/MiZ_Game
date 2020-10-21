@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class TileJoiner 
 {
-    readonly bool hasWall;
-    readonly bool hasWindow;
-    readonly bool hasDoorway;
+    public readonly bool hasWall;
+    public readonly bool hasWindow;
+    public readonly bool hasDoorway;
 
     Doorway doorwayComponent;
 

@@ -6,15 +6,15 @@ using UnityEngine;
 public static class MapGenerator 
 {
     
-    public static Site LoadSiteFromFile(string fileName)
-    {
-        Site site = new Site();
+    //public static Site LoadSiteFromFile(string fileName)
+    //{
+    //    Site site;
 
-        string jsonString = File.ReadAllText(fileName);
+    //    string jsonString = File.ReadAllText(fileName);
 
 
-        return site;
-    }
+    //    return site;
+    //}
 
 
 }

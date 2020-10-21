@@ -38,7 +38,7 @@ public class Tile
         }
         if (doorwayHasDoors == null)
         {
-            doorwayHasDoors = new bool[4] { false, false, false, false };
+            doors = new bool[4] { false, false, false, false };
         }
 
 

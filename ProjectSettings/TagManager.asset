@@ -38,6 +38,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Floors
+    uniqueID: 360289977
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Noise
+    uniqueID: 2141172689
+    locked: 0
+  - name: Walls
+    uniqueID: 670188031
     locked: 0

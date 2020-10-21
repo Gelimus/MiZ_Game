@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class Site
 {
-
+    public readonly int width;
+    public readonly int height;
     
-    Room[] rooms;
+    public Room[] rooms;
+
+    public Site(Room[] rooms, int w, int h)
+    {
+        this.rooms = rooms;
+        width = w;
+        height = h;
+    }
 }
