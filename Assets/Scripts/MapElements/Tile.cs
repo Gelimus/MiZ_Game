@@ -47,10 +47,10 @@ public class Tile
             Debug.LogError("Incorrect tile values passed to constructor!!!");
             return;
         }
-        north = new TileJoiner(walls[0],walls[0],doors[0]);
-        west = new TileJoiner(walls[1], walls[1],doors[1]);
-        south = new TileJoiner(walls[2], walls[2], doors[2]);
-        east = new TileJoiner(walls[3], walls[3], doors[3]);
+        north = new TileJoiner(walls[0], windows[0],doors[0]);
+        west = new TileJoiner(walls[1], windows[1],doors[1]);
+        south = new TileJoiner(walls[2], windows[2], doors[2]);
+        east = new TileJoiner(walls[3], windows[3], doors[3]);
         floorType = fT;
         xCoord = x;
         yCoord = y;

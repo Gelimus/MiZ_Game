@@ -10,11 +10,11 @@ public class MapNoise : MonoBehaviour
 
     // The number of cycles of the basic noise pattern that are repeated
     // over the width and height of the texture.
-    private float resolution = 0.3f;
+    private float resolution = 0.2f;
 
-    private float transparency =0.3f;
+    private float transparency =0.35f;
 
-    private float colorVariance = 0.4f;
+    private float colorVariance = 0.15f;
 
     //KONIEC POKRĘTEŁ
 
