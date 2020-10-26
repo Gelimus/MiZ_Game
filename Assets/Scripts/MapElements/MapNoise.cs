@@ -12,9 +12,9 @@ public class MapNoise : MonoBehaviour
     // over the width and height of the texture.
     private float resolution = 0.2f;
 
-    private float transparency =0.35f;
+    private float transparency =0.2f;
 
-    private float colorVariance = 0.15f;
+    private float colorVariance = 0.25f;
 
     //KONIEC POKRĘTEŁ
 
@@ -22,7 +22,7 @@ public class MapNoise : MonoBehaviour
     private Color[] pix;
     private Renderer rend;
 
-    public void LetThereBeNoise(int pixWidth, int pixHeight, float tileScale)
+    public void LetThereBeNoise(int pixWidth, int pixHeight, float tileScale, bool noiseFilterMode=true)
     {
         rend = GetComponent<Renderer>();
 
@@ -35,8 +35,15 @@ public class MapNoise : MonoBehaviour
         Vector2 noiseTexPivot = new Vector2(tileScale/(2 * pixWidth), 1-(tileScale/(2 * pixHeight)));
 
         ((SpriteRenderer)rend).sprite = Sprite.Create(noiseTex, new Rect(0f, 0f, noiseTex.width, noiseTex.height),noiseTexPivot, 64f);
-        CalcNoise();
-        //new Vector2(-tileScale/2, pixHeight-tileScale/2)
+        if (noiseFilterMode)
+        {
+            CalcNoise();
+        }
+        else
+        {
+            FlatFilter();
+        }
+
     }
 
     void CalcNoise()
@@ -66,4 +73,27 @@ public class MapNoise : MonoBehaviour
         noiseTex.SetPixels(pix);
         noiseTex.Apply();
     }
+
+    void FlatFilter()
+    {
+        float redNoise = 1f;
+        float greenNoise = 0f;
+        float blueNoise = 1f;
+        float flatTransparency = 0.1f;
+
+        Debug.Log("Applying Flat! (" + noiseTex.height + " x " + noiseTex.width + ")");
+
+        for (int y = 0; y < noiseTex.height; y++)
+        {
+            for (int x = 0; x < noiseTex.width; x++)
+            {
+                pix[y * noiseTex.width + (int)x] = new Color(redNoise, greenNoise, blueNoise , flatTransparency);
+            }
+        }
+
+        // Copy the pixel data to the texture and load it into the GPU.
+        noiseTex.SetPixels(pix);
+        noiseTex.Apply();
+    }
+
 }

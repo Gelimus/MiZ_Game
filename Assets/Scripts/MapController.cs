@@ -123,13 +123,19 @@ public class MapController : MonoBehaviour
         mask.transform.SetParent(mapHolder.transform);
         mask.AddComponent<SpriteRenderer>();
         MapNoise noiseGen = mask.AddComponent<MapNoise>();
-        
+
+        GameObject flatMask = new GameObject("FlatMask");
+        flatMask.transform.SetParent(mapHolder.transform);
+        flatMask.AddComponent<SpriteRenderer>();
+        MapNoise noiseGen2 = flatMask.AddComponent<MapNoise>();
+
         foreach (Room r in site.rooms)
         {
             DrawRoom(r, mapHolder);
         }
 
         noiseGen.LetThereBeNoise(site.width*(int)tileScale, site.height*(int)tileScale, tileScale);
+        noiseGen2.LetThereBeNoise(site.width * (int)tileScale, site.height * (int)tileScale, tileScale, false);
     }
 
     public void DrawRoom(Room room, GameObject mapHolder)
@@ -436,11 +442,6 @@ public class MapController : MonoBehaviour
                         finalColor = Color.Lerp(firstColor, secondColor, firstColor.a / 1.0f);
                     }
                     
-                }
-
-                if (finalColor.a != 1 && finalColor.a != 0&&debug)
-                {
-                    Debug.Log("Pixel "+x+" x "+y+" alpha of: "+finalColor.a);
                 }
                 
                 final.SetPixel(x, y, finalColor);
