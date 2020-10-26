@@ -150,7 +150,7 @@ public class MapController : MonoBehaviour
         tileVisuals.transform.position = new Vector3(tile.yCoord, tile.xCoord);
 
         //Call a function to generate a game object with walls visuals and add it to the parent (if there are any walls)
-        GameObject wallsVisuals = GenerateWallsVisuals(tile);
+        GameObject wallsVisuals = GenerateWallsAndWindowsVisuals(tile);
         if (wallsVisuals != null)
         {
             wallsVisuals.transform.SetParent(tileVisuals.transform);
@@ -203,7 +203,7 @@ public class MapController : MonoBehaviour
     //    return wallsVisuals;
     //}
 
-    private GameObject GenerateWallsVisuals(Tile tile)
+    private GameObject GenerateWallsAndWindowsVisuals(Tile tile)
     {
 
         //Check what walls if any surround the tile.
@@ -213,27 +213,25 @@ public class MapController : MonoBehaviour
         {
             if (tex == null)
             {
-                Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord +" generated North wall as its first.");
+                //Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord +" generated North wall as its first.");
                 tex = Resources.Load<Texture2D>("Sprites/TileWalls/N");
             }
             else
             {
-                Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated North wall as its further.");
-
-                tex = MergeTextures(tex, Resources.Load<Texture2D>("Sprites/TileWalls/N"));
+                //Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated North wall as its further.");
+                tex = MergeTextures(tex, Resources.Load<Texture2D>("Sprites/TileWalls/N"), true);
             }
         }
         else if (tile.north.hasWindow)
         {
             if (tex == null)
             {
-                Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated North window as its first.");
-
+                //Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated North window as its first.");
                 tex = Resources.Load<Texture2D>("Sprites/TileWalls/windowN");
             }
             else
             {
-                Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated North window as its further.");
+                //Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated North window as its further.");
                 tex = MergeTextures(tex, Resources.Load<Texture2D>("Sprites/TileWalls/windowN"),true);
             }
         }
@@ -241,29 +239,25 @@ public class MapController : MonoBehaviour
         {
             if (tex == null)
             {
-                Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated West wall as its first.");
-
+                //Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated West wall as its first.");
                 tex = Resources.Load<Texture2D>("Sprites/TileWalls/W");
             }
             else
             {
-                Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated West wall as its further.");
-
-                tex = MergeTextures(tex, Resources.Load<Texture2D>("Sprites/TileWalls/W"));
+                //Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated West wall as its further.");
+                tex = MergeTextures(tex, Resources.Load<Texture2D>("Sprites/TileWalls/W"), true,true);
             }
         }
         else if (tile.west.hasWindow)
         {
             if (tex == null)
             {
-                Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated West window as its first.");
-
+                //Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated West window as its first.");
                 tex = Resources.Load<Texture2D>("Sprites/TileWalls/windowW");
             }
             else
             {
-                Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated West window as its further.");
-
+                //Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated West window as its further.");
                 tex = MergeTextures(tex, Resources.Load<Texture2D>("Sprites/TileWalls/windowW"), true);
             }
         }
@@ -271,29 +265,25 @@ public class MapController : MonoBehaviour
         {
             if (tex == null)
             {
-                Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated South wall as its first.");
-
+                //Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated South wall as its first.");
                 tex = Resources.Load<Texture2D>("Sprites/TileWalls/S");
             }
             else
             {
-                Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated South wall as its further.");
-
-                tex = MergeTextures(tex, Resources.Load<Texture2D>("Sprites/TileWalls/S"));
+                //Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated South wall as its further.");
+                tex = MergeTextures(tex, Resources.Load<Texture2D>("Sprites/TileWalls/S"), true);
             }
         }
         else if (tile.south.hasWindow)
         {
             if (tex == null)
             {
-                Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated South window as its first.");
-
+                //Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated South window as its first.");
                 tex = Resources.Load<Texture2D>("Sprites/TileWalls/windowS");
             }
             else
             {
-                Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated South window as its further.");
-
+                //Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated South window as its further.");
                 tex = MergeTextures(tex, Resources.Load<Texture2D>("Sprites/TileWalls/windowS"), true);
             }
         }
@@ -301,29 +291,25 @@ public class MapController : MonoBehaviour
         {
             if (tex == null)
             {
-                Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated East wall as its first.");
-
+                //Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated East wall as its first.");
                 tex = Resources.Load<Texture2D>("Sprites/TileWalls/E");
             }
             else
             {
-                Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated East wall as its further.");
-
-                tex = MergeTextures(tex, Resources.Load<Texture2D>("Sprites/TileWalls/E"));
+                //Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated East wall as its further.");
+                tex = MergeTextures(tex, Resources.Load<Texture2D>("Sprites/TileWalls/E"), true);
             }
         }
         else if (tile.east.hasWindow)
         {
             if (tex == null)
             {
-                Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated East window as its first.");
-
+                //Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated East window as its first.");
                 tex = Resources.Load<Texture2D>("Sprites/TileWalls/windowE");
             }
             else
             {
-                Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated East window as its further.");
-
+                //Debug.Log("Tile: " + tile.yCoord + " x " + tile.xCoord + " generated East window as its further.");
                 tex = MergeTextures(tex, Resources.Load<Texture2D>("Sprites/TileWalls/windowE"), true);
             }
         }
@@ -342,6 +328,8 @@ public class MapController : MonoBehaviour
 
         return wallsVisuals;
     }
+
+    
 
     private GameObject GenerateFloorVisuals(Tile tile)
     {
@@ -417,9 +405,10 @@ public class MapController : MonoBehaviour
     //    return windowsVisuals;
     //}
 
-    private Texture2D MergeTextures(Texture2D first,Texture2D second,bool firstOverridesSecond=false)
+    private Texture2D MergeTextures(Texture2D first,Texture2D second,bool firstOverridesSecond=false,bool debug=false)
     {
         Texture2D final = new Texture2D(first.width, first.height);
+        final.filterMode = FilterMode.Point;
         for (int x = 0; x < first.width; x++)
         {
             for (int y = 0; y < first.height; y++)
@@ -427,10 +416,11 @@ public class MapController : MonoBehaviour
                 Color firstColor = first.GetPixel(x, y);             
                 Color secondColor = second.GetPixel(x, y);
                 Color finalColor = new Color();
-                if (secondColor.a < 0.5)
+                if (secondColor.a < 0.2)
                 {
                     finalColor = firstColor;
-                }else if (firstColor.a < 0.5)
+                    
+                }else if (firstColor.a < 0.2)
                 {
                     finalColor = secondColor;
                 }
@@ -442,10 +432,17 @@ public class MapController : MonoBehaviour
                     }
                     else
                     {
+                        Debug.Log("Interpolating pixels");
                         finalColor = Color.Lerp(firstColor, secondColor, firstColor.a / 1.0f);
                     }
                     
                 }
+
+                if (finalColor.a != 1 && finalColor.a != 0&&debug)
+                {
+                    Debug.Log("Pixel "+x+" x "+y+" alpha of: "+finalColor.a);
+                }
+                
                 final.SetPixel(x, y, finalColor);
             }
         }
@@ -453,4 +450,6 @@ public class MapController : MonoBehaviour
         return final;
 
     }
+
+    
 }
