@@ -16,10 +16,10 @@ public class Room
     /// <summary>
     /// The list of every furniture in the room.
     /// </summary>
-    public List<Furniture> furnitures { get; private set; }
+    public List<Furniture> furniture { get; private set; }
 
 
-    public readonly Tile[][] map; //jagged array
+    //public readonly Tile[][] map; //jagged array
 
 
     /// <summary>
@@ -29,54 +29,55 @@ public class Room
     /// for the room.
     /// </summary>
     /// <param name="category">The category of the room to be generated</param>
-    public Room(string category)
+    //public Room(string category)
+    //{
+    //    this.category = category;
+    //    this.Name = category;
+
+
+    //    //FOR TESTING
+    //    furniture = new List<Furniture>();
+
+    //    List<Item> items = new List<Item>();
+
+    //    items.Add(new Item("Pillow"));
+    //    items.Add(new Item("Knife"));
+
+    //    List<FurnitureAction> actions = new List<FurnitureAction>();
+    //    actions.Add(new SearchAction());
+    //    FurnitureType bed = new FurnitureType("bed","Bed",new Vector2(1,1), actions);
+    //    actions = new List<FurnitureAction>();
+    //    actions.Add(new SearchAction());
+    //    FurnitureType table = new FurnitureType("table","Table",new Vector2(1,1), actions);
+    //    actions = new List<FurnitureAction>();
+    //    actions.Add(new SearchAction());
+    //    FurnitureType mirror = new FurnitureType("mirror","Mirror", new Vector2(1,1), actions);
+    //    actions = new List<FurnitureAction>();
+    //    actions.Add(new SearchAction());
+    //    FurnitureType chair = new FurnitureType("chair","Chair", new Vector2(1,1), actions);
+    //    actions = new List<FurnitureAction>();
+    //    actions.Add(new SearchAction());
+    //    FurnitureType lamp = new FurnitureType("lamp","Lamp", new Vector2(1,1), actions);
+
+
+    //    furniture.Add(new Furniture("Bed", bed,Vector2.one,Quaternion.identity, items));
+    //    items = new List<Item>();
+    //    items.Add(new Item("Book: Witcher"));
+    //    items.Add(new Item("Family Photo"));
+    //    items.Add(new Item("Bottle of Beer"));
+    //    items.Add(new Item("Beautiful green plant"));
+    //    //furniture.Add(new Furniture(table, items));
+    //    //furniture.Add(new Furniture(mirror, items));
+    //    //furniture.Add(new Furniture(chair, items));
+    //    //furniture.Add(new Furniture(lamp, items));
+    //    //END FOR TESTING
+
+    //}
+
+    public Room(List<Furniture> furniture,string name)
     {
-        this.category = category;
-        this.Name = category;
-
-
-        //FOR TESTING
-        furnitures = new List<Furniture>();
-
-        List<Item> items = new List<Item>();
-
-        items.Add(new Item("Pillow"));
-        items.Add(new Item("Knife"));
-
-        List<FurnitureAction> actions=new List<FurnitureAction>();
-        actions.Add(new SearchAction());
-        FurnitueType bed = new FurnitueType("Bed",actions);
-        actions = new List<FurnitureAction>();
-        actions.Add(new SearchAction());
-        FurnitueType table = new FurnitueType("Table", actions);
-        actions = new List<FurnitureAction>();
-        actions.Add(new SearchAction());
-        FurnitueType mirror = new FurnitueType("Mirror", actions);
-        actions = new List<FurnitureAction>();
-        actions.Add(new SearchAction());
-        FurnitueType chair = new FurnitueType("Chair", actions);
-        actions = new List<FurnitureAction>();
-        actions.Add(new SearchAction());
-        FurnitueType lamp = new FurnitueType("Lamp", actions);
-
-
-        furnitures.Add(new Furniture(bed,items));
-        items = new List<Item>();
-        items.Add(new Item("Book: Witcher"));
-        items.Add(new Item("Family Photo"));
-        items.Add(new Item("Bottle of Beer"));
-        items.Add(new Item("Beautiful green plant"));
-        furnitures.Add(new Furniture(table,items));
-        furnitures.Add(new Furniture(mirror,items));
-        furnitures.Add(new Furniture(chair,items));
-        furnitures.Add(new Furniture(lamp,items));
-        //END FOR TESTING
-
-    }
-
-    public Room(Tile[][] map)
-    {
-        this.map = map;
+        Name = name;
+        this.furniture = furniture;
     }
 
 

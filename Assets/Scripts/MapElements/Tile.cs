@@ -8,6 +8,8 @@ public class Tile
     public readonly int yCoord;
     public readonly int xCoord;
 
+    public readonly Room room;
+
 
     public readonly string floorType;
 
@@ -22,8 +24,9 @@ public class Tile
 
     int passageCost;
 
-    public Tile(bool[] walls, bool[] windows ,bool[] doors,bool[] doorwayHasDoors, string fT, int x, int y)
+    public Tile(Room room, bool[] walls, bool[] windows ,bool[] doors,bool[] doorwayHasDoors, string fT, int x, int y)
     {
+        this.room = room;
         if (walls == null)
         {
             walls = new bool[4] { false, false, false, false };
@@ -55,7 +58,7 @@ public class Tile
         xCoord = x;
         yCoord = y;
     }
-
+    
 
     
 

@@ -47,6 +47,9 @@ TagManager:
   - name: Noise
     uniqueID: 2141172689
     locked: 0
+  - name: Furniture
+    uniqueID: 3499761743
+    locked: 0
   - name: Walls
     uniqueID: 670188031
     locked: 0

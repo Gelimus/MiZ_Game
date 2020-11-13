@@ -6,6 +6,12 @@ public class MapController : MonoBehaviour
 {
     private float tileScale = 64f;
 
+    public Site activeSite
+    {
+        get;
+        private set;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,95 +29,145 @@ public class MapController : MonoBehaviour
     
     private void GenerateTestSite()
     {
-        Tile[][] bedRoomMap = new Tile[9][];
+        List<FurnitureAction> actions = new List<FurnitureAction>
+        {
+            new SearchAction()
+        };
+        FurnitureType doublebed = new FurnitureType("doublebed", "Double Bed", new Vector2(3, 4), actions);
+        Furniture bed = new Furniture("Double Bed 1",doublebed,new Vector2(0,-1),Quaternion.Euler(0,0,90));
 
-        bedRoomMap[0] = new Tile[7];
-        bedRoomMap[0][0] = new Tile(new bool[4] { true, true, false, false },null,null,null,"wood1",0,0);
-        bedRoomMap[0][1] = new Tile(new bool[4] { false, false, false, false },new bool[4] { true, false, false, false }, null, null, "wood1", 0, 1);
-        bedRoomMap[0][2] = new Tile(new bool[4] { false, false, false, false }, new bool[4] { true, false, false, false }, null, null, "wood1", 0, 2);
-        bedRoomMap[0][3] = new Tile(new bool[4] { false, false, false, false }, new bool[4] { true, false, false, false }, null, null, "wood1", 0, 3);
-        bedRoomMap[0][4] = new Tile(new bool[4] { true, false, false, false }, null, null, null, "wood1", 0, 4);
-        bedRoomMap[0][5] = new Tile(new bool[4] { true, false, false, false }, null, null, null, "wood1", 0, 5);
-        bedRoomMap[0][6] = new Tile(new bool[4] { true, false, false, true }, null, null, null, "wood1", 0, 6);
+        FurnitureType nightstand = new FurnitureType("nightstand", "Night Stand", new Vector2(1, 1), actions);
+        Furniture nightStand1 = new Furniture("Night Stand 1", nightstand, new Vector2(0, 0), Quaternion.identity);
+        Furniture nightStand2 = new Furniture("Night Stand 2", nightstand, new Vector2(0, -4), Quaternion.identity);
 
+        FurnitureType wardrobe = new FurnitureType("wardrobe", "Wardrobe", new Vector2(2, 1), actions);
+        Furniture wardrobe1 = new Furniture("Wardrobe 1", wardrobe, new Vector2(6, 0), Quaternion.Euler(0, 0, -90));
+        Furniture wardrobe2 = new Furniture("Wardrobe 2", wardrobe, new Vector2(0, -6), Quaternion.Euler(0, 0, 90));
+        Furniture wardrobe3 = new Furniture("Wardrobe 3", wardrobe, new Vector2(5, -6), Quaternion.identity);
 
-        bedRoomMap[1] = new Tile[7];
-        bedRoomMap[1][0] = new Tile(new bool[4] { false, true, false, false }, null, null, null, "wood1", -1, 0);
-        bedRoomMap[1][1] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -1, 1);
-        bedRoomMap[1][2] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -1, 2);
-        bedRoomMap[1][3] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -1, 3);
-        bedRoomMap[1][4] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -1, 4);
-        bedRoomMap[1][5] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -1, 5);
-        bedRoomMap[1][6] = new Tile(new bool[4] { false, false, false, true }, null, null, null, "wood1", -1, 6);
+        FurnitureType carpet = new FurnitureType("carpet", "Carpet", new Vector2(2, 2), actions);
+        Furniture carpet1 = new Furniture("Carpet 1", carpet, new Vector2(2, -5), Quaternion.identity);
 
-        bedRoomMap[2] = new Tile[7];
-        bedRoomMap[2][0] = new Tile(new bool[4] { false, true, false, false }, null, null, null, "wood1", -2, 0);
-        bedRoomMap[2][1] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -2, 1);
-        bedRoomMap[2][2] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -2, 2);
-        bedRoomMap[2][3] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -2, 3);
-        bedRoomMap[2][4] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -2, 4);
-        bedRoomMap[2][5] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -2, 5);
-        bedRoomMap[2][6] = new Tile(new bool[4] { false, false, false, true }, null, null, null, "wood1", -2, 6);
+        FurnitureType desk = new FurnitureType("desk", "Desk", new Vector2(3, 1), actions);
+        Furniture desk1 = new Furniture("Desk 1", desk, new Vector2(6, -3), Quaternion.Euler(0, 0, -90));
 
-        bedRoomMap[3] = new Tile[7];
-        bedRoomMap[3][0] = new Tile(new bool[4] { false, true, false, false }, null, null, null, "wood1", -3, 0);
-        bedRoomMap[3][1] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -3, 1);
-        bedRoomMap[3][2] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -3, 2);
-        bedRoomMap[3][3] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -3, 3);
-        bedRoomMap[3][4] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -3, 4);
-        bedRoomMap[3][5] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -3, 5);
-        bedRoomMap[3][6] = new Tile(new bool[4] { false, false, false, true }, null, null, null, "wood1", -3, 6);
+        FurnitureType chair = new FurnitureType("chair", "Chair", new Vector2(1, 2), actions);
+        Furniture chair1 = new Furniture("Chair 1", chair, new Vector2(5, -4), Quaternion.Euler(0, 0, 90));
 
-        bedRoomMap[4] = new Tile[7];
-        bedRoomMap[4][0] = new Tile(new bool[4] { false, true, false, false }, null, null, null, "wood1", -4, 0);
-        bedRoomMap[4][1] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -4, 1);
-        bedRoomMap[4][2] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -4, 2);
-        bedRoomMap[4][3] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -4, 3);
-        bedRoomMap[4][4] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -4, 4);
-        bedRoomMap[4][5] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -4, 5);
-        bedRoomMap[4][6] = new Tile(new bool[4] { false, false, false, true }, null, null, null, "wood1", -4, 6);
+        List<Furniture> bedroomFurniture = new List<Furniture>
+        {
+            bed, nightStand1, nightStand2,wardrobe1,wardrobe2,wardrobe3,carpet1,desk1,chair1
+        };
+        Room bedroom = new Room(bedroomFurniture,"Bedroom");
 
-        bedRoomMap[5] = new Tile[7];
-        bedRoomMap[5][0] = new Tile(new bool[4] { false, true, false, false }, null, null, null, "wood1", -5, 0);
-        bedRoomMap[5][1] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -5, 1);
-        bedRoomMap[5][2] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -5, 2);
-        bedRoomMap[5][3] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -5, 3);
-        bedRoomMap[5][4] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -5, 4);
-        bedRoomMap[5][5] = new Tile(new bool[4] { false, false, true, false }, null, null, null, "wood1", -5, 5);
-        bedRoomMap[5][6] = new Tile(new bool[4] { false, false, true, true }, null, null, null, "wood1", -5, 6);
+        Room bathroom = new Room(new List<Furniture>(), "Bathroom");
 
-        bedRoomMap[6] = new Tile[7];
-        bedRoomMap[6][0] = new Tile(new bool[4] { false, true, false, false }, null, null, null, "wood1", -6, 0);
-        bedRoomMap[6][1] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -6, 1);
-        bedRoomMap[6][2] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -6, 2);
-        bedRoomMap[6][3] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -6, 3);
-        bedRoomMap[6][4] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -6, 4);
-        bedRoomMap[6][5] = new Tile(new bool[4] { true, false, false, false }, null, null, null, "wood1", -6, 5);
-        bedRoomMap[6][6] = new Tile(new bool[4] { true, false, false, true }, null, null, null, "wood1", -6, 6);
+        Tile[,] testSiteMap = new Tile[12,7];
 
-        bedRoomMap[7] = new Tile[7];
-        bedRoomMap[7][0] = new Tile(new bool[4] { false, true, false, false }, null, null, null, "wood1", -7, 0);
-        bedRoomMap[7][1] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -7, 1);
-        bedRoomMap[7][2] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -7, 2);
-        bedRoomMap[7][3] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -7, 3);
-        bedRoomMap[7][4] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -7, 4);
-        bedRoomMap[7][5] = new Tile(new bool[4] { false, false, false, false }, null, null, null, "wood1", -7, 5);
-        bedRoomMap[7][6] = new Tile(new bool[4] { false, false, false, true }, null, null, null, "wood1", -7, 6);
-
-
-        bedRoomMap[8] = new Tile[7];
-        bedRoomMap[8][0] = new Tile(new bool[4] { false, true, true, false }, null, null, null, "wood1", -8, 0);
-        bedRoomMap[8][1] = new Tile(new bool[4] { false, false, true, false }, null, null, null, "wood1", -8, 1);
-        bedRoomMap[8][2] = new Tile(new bool[4] { false, false, true, false }, null, null, null, "wood1", -8, 2);
-        bedRoomMap[8][3] = new Tile(new bool[4] { false, false, true, false }, null, null, null, "wood1", -8, 3);
-        bedRoomMap[8][4] = new Tile(new bool[4] { false, false, true, false }, null, null, null, "wood1", -8, 4);
-        bedRoomMap[8][5] = new Tile(new bool[4] { false, false, true, false }, null, null, null, "wood1", -8, 5);
-        bedRoomMap[8][6] = new Tile(new bool[4] { false, false, true, false }, null,new bool[4] { false, false, false, true } , new bool[4] { false, false, false, true }, "wood1", -8, 6);
-
-
-        Room bedroom = new Room(bedRoomMap);
-        Site testMap = new Site(new Room[]{ bedroom },7,9);
         
+        testSiteMap[0,0] = new Tile(bedroom, new bool[4] { true, true, false, false },null,null,null,"wood1",0,0);
+        testSiteMap[0,1] = new Tile(bedroom, new bool[4] { false, false, false, false },new bool[4] { true, false, false, false }, null, null, "wood1", 0, 1);
+        testSiteMap[0,2] = new Tile(bedroom, new bool[4] { false, false, false, false }, new bool[4] { true, false, false, false }, null, null, "wood1", 0, 2);
+        testSiteMap[0,3] = new Tile(bedroom, new bool[4] { false, false, false, false }, new bool[4] { true, false, false, false }, null, null, "wood1", 0, 3);
+        testSiteMap[0,4] = new Tile(bedroom, new bool[4] { true, false, false, false }, null, null, null, "wood1", 0, 4);
+        testSiteMap[0,5] = new Tile(bedroom, new bool[4] { true, false, false, false }, null, null, null, "wood1", 0, 5);
+        testSiteMap[0,6] = new Tile(bedroom, new bool[4] { true, false, false, true }, null, null, null, "wood1", 0, 6);
+      
+        testSiteMap[1,0] = new Tile(bedroom, new bool[4] { false, true, false, false }, null, null, null, "wood1", -1, 0);
+        testSiteMap[1,1] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -1, 1);
+        testSiteMap[1,2] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -1, 2);
+        testSiteMap[1,3] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -1, 3);
+        testSiteMap[1,4] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -1, 4);
+        testSiteMap[1,5] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -1, 5);
+        testSiteMap[1,6] = new Tile(bedroom, new bool[4] { false, false, false, true }, null, null, null, "wood1", -1, 6);
+
+        testSiteMap[2,0] = new Tile(bedroom, new bool[4] { false, true, false, false }, null, null, null, "wood1", -2, 0);
+        testSiteMap[2,1] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -2, 1);
+        testSiteMap[2,2] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -2, 2);
+        testSiteMap[2,3] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -2, 3);
+        testSiteMap[2,4] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -2, 4);
+        testSiteMap[2,5] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -2, 5);
+        testSiteMap[2,6] = new Tile(bedroom, new bool[4] { false, false, false, true }, null, null, null, "wood1", -2, 6);
+
+        testSiteMap[3,0] = new Tile(bedroom, new bool[4] { false, true, false, false }, null, null, null, "wood1", -3, 0);
+        testSiteMap[3,1] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -3, 1);
+        testSiteMap[3,2] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -3, 2);
+        testSiteMap[3,3] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -3, 3);
+        testSiteMap[3,4] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -3, 4);
+        testSiteMap[3,5] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -3, 5);
+        testSiteMap[3,6] = new Tile(bedroom, new bool[4] { false, false, false, true }, null, null, null, "wood1", -3, 6);
+
+        testSiteMap[4,0] = new Tile(bedroom, new bool[4] { false, true, false, false }, null, null, null, "wood1", -4, 0);
+        testSiteMap[4,1] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -4, 1);
+        testSiteMap[4,2] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -4, 2);
+        testSiteMap[4,3] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -4, 3);
+        testSiteMap[4,4] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -4, 4);
+        testSiteMap[4,5] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -4, 5);
+        testSiteMap[4,6] = new Tile(bedroom, new bool[4] { false, false, false, true }, null, null, null, "wood1", -4, 6);
+
+        testSiteMap[5,0] = new Tile(bedroom, new bool[4] { false, true, false, false }, null, null, null, "wood1", -5, 0);
+        testSiteMap[5,1] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -5, 1);
+        testSiteMap[5,2] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -5, 2);
+        testSiteMap[5,3] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -5, 3);
+        testSiteMap[5,4] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -5, 4);
+        testSiteMap[5,5] = new Tile(bedroom, new bool[4] { false, false, true, false }, null, null, null, "wood1", -5, 5);
+        testSiteMap[5,6] = new Tile(bedroom, new bool[4] { false, false, true, true }, null, null, null, "wood1", -5, 6);
+
+        testSiteMap[6,0] = new Tile(bedroom, new bool[4] { false, true, false, false }, null, null, null, "wood1", -6, 0);
+        testSiteMap[6,1] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -6, 1);
+        testSiteMap[6,2] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -6, 2);
+        testSiteMap[6,3] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -6, 3);
+        testSiteMap[6,4] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -6, 4);
+        testSiteMap[6,5] = new Tile(bedroom, new bool[4] { true, false, false, false }, null, null, null, "wood1", -6, 5);
+        testSiteMap[6,6] = new Tile(bedroom, new bool[4] { true, false, false, true }, null, null, null, "wood1", -6, 6);
+
+        testSiteMap[7,0] = new Tile(bedroom, new bool[4] { false, true, false, false }, null, null, null, "wood1", -7, 0);
+        testSiteMap[7,1] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -7, 1);
+        testSiteMap[7,2] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -7, 2);
+        testSiteMap[7,3] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -7, 3);
+        testSiteMap[7,4] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -7, 4);
+        testSiteMap[7,5] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -7, 5);
+        testSiteMap[7,6] = new Tile(bedroom, new bool[4] { false, false, false, true }, null, null, null, "wood1", -7, 6);
+
+        testSiteMap[8,0] = new Tile(bedroom, new bool[4] { false, true, true, false }, null, null, null, "wood1", -8, 0);
+        testSiteMap[8,1] = new Tile(bedroom, new bool[4] { false, false, true, false }, null, null, null, "wood1", -8, 1);
+        testSiteMap[8,2] = new Tile(bedroom, new bool[4] { false, false, true, false }, null, null, null, "wood1", -8, 2);
+        testSiteMap[8,3] = new Tile(bedroom, new bool[4] { false, false, true, false }, null, null, null, "wood1", -8, 3);
+        testSiteMap[8,4] = new Tile(bedroom, new bool[4] { false, false, true, false }, null, null, null, "wood1", -8, 4);
+        testSiteMap[8,5] = new Tile(bedroom, new bool[4] { false, false, true, false }, null, null, null, "wood1", -8, 5);
+        testSiteMap[8,6] = new Tile(bedroom, new bool[4] { false, false, true, false }, null,new bool[4] { false, false, false, true } , new bool[4] { false, false, false, true }, "wood1", -8, 6);
+
+
+        testSiteMap[9, 0] = new Tile(bathroom, new bool[4] { true, true, false, false }, null, null, null, "tiles01", -9, 0);
+        testSiteMap[9, 1] = new Tile(bathroom, new bool[4] { true, false, false, false }, null, null, null, "tiles01", -9, 1);
+        testSiteMap[9, 2] = new Tile(bathroom, new bool[4] { true, false, false, false }, null, null, null, "tiles01", -9, 2);
+        testSiteMap[9, 3] = new Tile(bathroom, new bool[4] { true, false, false, false }, null, null, null, "tiles01", -9, 3);
+        testSiteMap[9, 4] = new Tile(bathroom, new bool[4] { true, false, false, false }, null, null, null, "tiles01", -9, 4);
+        testSiteMap[9, 5] = new Tile(bathroom, new bool[4] { true, false, false, false }, null, null, null, "tiles01", -9, 5);
+        testSiteMap[9, 6] = new Tile(bathroom, new bool[4] { true, false, false, false }, null, new bool[4] { false, false, false, true }, new bool[4] { false, false, false, true }, "tiles01", -9, 6);
+
+
+        testSiteMap[10, 0] = new Tile(bathroom, new bool[4] { false, true, false, false }, null, null, null, "tiles01", -10, 0);
+        testSiteMap[10, 1] = new Tile(bathroom, new bool[4] { false, false, false, false }, null, null, null, "tiles01", -10, 1);
+        testSiteMap[10, 2] = new Tile(bathroom, new bool[4] { false, false, false, false }, null, null, null, "tiles01", -10, 2);
+        testSiteMap[10, 3] = new Tile(bathroom, new bool[4] { false, false, false, false }, null, null, null, "tiles01", -10, 3);
+        testSiteMap[10, 4] = new Tile(bathroom, new bool[4] { false, false, false, false }, null, null, null, "tiles01", -10, 4);
+        testSiteMap[10, 5] = new Tile(bathroom, new bool[4] { false, false, false, false }, null, null, null, "tiles01", -10, 5);
+        testSiteMap[10, 6] = new Tile(bathroom, new bool[4] { false, false, false, true }, null, null, null, "tiles01", -10, 6);
+
+
+        testSiteMap[11, 0] = new Tile(bathroom, new bool[4] { false, true, true, false }, null, null, null, "tiles01", -11, 0);
+        testSiteMap[11, 1] = new Tile(bathroom, new bool[4] { false, false, true, false }, null, null, null, "tiles01", -11, 1);
+        testSiteMap[11, 2] = new Tile(bathroom, new bool[4] { false, false, true, false }, null, null, null, "tiles01", -11, 2);
+        testSiteMap[11, 3] = new Tile(bathroom, new bool[4] { false, false, true, false }, null, null, null, "tiles01", -11, 3);
+        testSiteMap[11, 4] = new Tile(bathroom, new bool[4] { false, false, true, false }, null, null, null, "tiles01", -11, 4);
+        testSiteMap[11, 5] = new Tile(bathroom, new bool[4] { false, false, true, false }, null, null, null, "tiles01", -11, 5);
+        testSiteMap[11, 6] = new Tile(bathroom, new bool[4] { false, false, true, true }, null, null, null, "tiles01", -11, 6);
+
+
+        Site testMap = new Site(new Room[]{ bedroom },testSiteMap,7,12);
+        activeSite = testMap;
+
         DrawMap(testMap);
 
     } 
@@ -119,6 +175,12 @@ public class MapController : MonoBehaviour
     public void DrawMap(Site site)
     {
         GameObject mapHolder = new GameObject("MapHolder");
+        GameObject innerMapHolder = new GameObject("InnerMapHolder");
+        innerMapHolder.transform.SetParent(mapHolder.transform);
+        BoxCollider collider= innerMapHolder.AddComponent<BoxCollider>();
+        collider.size = new Vector2(site.width, site.height);
+        collider.center = new Vector2(site.width*0.5f-0.5f, site.height * (-0.5f)+0.5f);
+
         GameObject mask = new GameObject("NoiseMask");
         mask.transform.SetParent(mapHolder.transform);
         mask.AddComponent<SpriteRenderer>();
@@ -129,25 +191,32 @@ public class MapController : MonoBehaviour
         flatMask.AddComponent<SpriteRenderer>();
         MapNoise noiseGen2 = flatMask.AddComponent<MapNoise>();
 
-        foreach (Room r in site.rooms)
+        for (int i = 0; i < site.map.GetLength(0); i++)
         {
-            DrawRoom(r, mapHolder);
+            for (int j = 0; j < site.map.GetLength(1); j++)
+            {
+                GameObject tile = GenerateTileVisual(site.map[i,j]);
+                tile.transform.SetParent(innerMapHolder.transform);
+            }
         }
 
         noiseGen.LetThereBeNoise(site.width*(int)tileScale, site.height*(int)tileScale, tileScale);
         noiseGen2.LetThereBeNoise(site.width * (int)tileScale, site.height * (int)tileScale, tileScale, false);
-    }
 
-    public void DrawRoom(Room room, GameObject mapHolder)
+        DrawFurniture(site).transform.SetParent(mapHolder.transform);
+    }
+    public GameObject DrawFurniture(Site site)
     {
-        for (int i = 0; i < room.map.Length; i++)
+        GameObject furnitureHolder = new GameObject("furnitureHolder");
+        foreach(Room r in site.rooms)
         {
-            for (int j = 0; j < room.map[i].Length; j++)
+            foreach(Furniture f in r.furniture)
             {
-                GameObject tile = GenerateTileVisual(room.map[i][j]);
-                tile.transform.SetParent(mapHolder.transform);
+                GameObject furnitureVis = GenerateFurnitureVisual(f);
+                furnitureVis.transform.SetParent(furnitureHolder.transform);
             }
         }
+        return furnitureHolder;
     }
     private GameObject GenerateTileVisual(Tile tile)
     {
@@ -169,45 +238,6 @@ public class MapController : MonoBehaviour
 
         return tileVisuals;
     }
-
-    //private GameObject GenerateWallsVisuals(Tile tile)
-    //{
-
-    //    //Check what walls if any surround the tile.
-    //    string wallTextureName = "";
-    //    if (tile.north.hasWall)
-    //    {
-    //        wallTextureName += "N";
-    //    }
-    //    if (tile.west.hasWall)
-    //    {
-    //        wallTextureName += "W";
-    //    }
-    //    if (tile.south.hasWall)
-    //    {
-    //        wallTextureName += "S";
-    //    }
-    //    if (tile.east.hasWall)
-    //    {
-    //        wallTextureName += "E";
-    //    }
-    //    //If no walls are present exit the function with a null value
-    //    if (wallTextureName == "")
-    //    {
-    //        return null;
-    //    }
-    //    //Create a GameObject with a Sprite Renderer component
-    //    GameObject wallsVisuals = new GameObject("Walls");
-    //    SpriteRenderer sr = wallsVisuals.AddComponent<SpriteRenderer>();
-
-    //    //Load a texture and create a sprite from it, and apply said sprite to the Sprite Renderer component.
-    //    Texture2D tex = Resources.Load<Texture2D>("Sprites/TileWalls/" + wallTextureName);
-    //    sr.sprite = Sprite.Create(tex, new Rect(0f, 0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), tileScale);
-    //    sr.sortingLayerName = "Walls";
-
-
-    //    return wallsVisuals;
-    //}
 
     private GameObject GenerateWallsAndWindowsVisuals(Tile tile)
     {
@@ -336,7 +366,6 @@ public class MapController : MonoBehaviour
     }
 
     
-
     private GameObject GenerateFloorVisuals(Tile tile)
     {
         //Create a GameObject with a Sprite Renderer component
@@ -345,8 +374,17 @@ public class MapController : MonoBehaviour
         SpriteRenderer sr = floorVisuals.AddComponent<SpriteRenderer>();
 
         //Load a texture and create a sprite from it, and apply said sprite to the Sprite Renderer component.
-        int floorSprite = Random.Range(0, 6);
-        Texture2D tex = Resources.Load<Texture2D>("Sprites/TileFloors/" + tile.floorType+floorSprite);
+        Texture2D tex;
+        if (tile.floorType == "wood1")
+        {
+            int floorSprite = Random.Range(0, 6);
+            tex = Resources.Load<Texture2D>("Sprites/TileFloors/" + tile.floorType + floorSprite);
+        }
+        else
+        {
+            tex = Resources.Load<Texture2D>("Sprites/TileFloors/" + tile.floorType);
+        }
+        
         sr.sprite = Sprite.Create(tex, new Rect(0f, 0f, tex.width, tex.height), new Vector2(0.5f,0.5f), tileScale);
         sr.sortingLayerName = "Floors";
         //int floorRotation = Random.Range(0, 2);
@@ -354,62 +392,7 @@ public class MapController : MonoBehaviour
 
         return floorVisuals;
     }
-
-
-    //private GameObject GenerateWindowsVisuals(Tile tile)
-    //{
-    //    GameObject windowsVisuals = new GameObject("Windows");
-    //    SpriteRenderer sr = floorVisuals.AddComponent<SpriteRenderer>();
-    //    Texture2D winText=null;
-        
-    //    if (tile.north.hasWall)
-    //    {
-    //        if (winText==null)
-    //        {
-    //            winText= Resources.Load<Texture2D>("Sprites/TileWalls/windowN");
-    //        }
-    //        else
-    //        {
-    //            winText = MergeTextures(winText, Resources.Load<Texture2D>("Sprites/TileWalls/windowN"));
-    //        }
-    //    }
-    //    if (tile.west.hasWall)
-    //    {
-    //        if (winText == null)
-    //        {
-    //            winText = Resources.Load<Texture2D>("Sprites/TileWalls/windowW");
-    //        }
-    //        else
-    //        {
-    //            winText = MergeTextures(winText, Resources.Load<Texture2D>("Sprites/TileWalls/windowW"));
-    //        }
-    //    }
-    //    if (tile.south.hasWall)
-    //    {
-    //        if (winText == null)
-    //        {
-    //            winText = Resources.Load<Texture2D>("Sprites/TileWalls/windowW");
-    //        }
-    //        else
-    //        {
-    //            winText = MergeTextures(winText, Resources.Load<Texture2D>("Sprites/TileWalls/windowW"));
-    //        }
-    //    }
-    //    if (tile.east.hasWall)
-    //    {
-    //        if (winText == null)
-    //        {
-    //            winText = Resources.Load<Texture2D>("Sprites/TileWalls/windowW");
-    //        }
-    //        else
-    //        {
-    //            winText = MergeTextures(winText, Resources.Load<Texture2D>("Sprites/TileWalls/windowW"));
-    //        }
-    //    }
-
-
-    //    return windowsVisuals;
-    //}
+   
 
     private Texture2D MergeTextures(Texture2D first,Texture2D second,bool firstOverridesSecond=false,bool debug=false)
     {
@@ -452,5 +435,21 @@ public class MapController : MonoBehaviour
 
     }
 
-    
+    private GameObject GenerateFurnitureVisual(Furniture f)
+    {
+        GameObject furniture = new GameObject(f.furnitureType.PrintableName);
+        SpriteRenderer sr = furniture.AddComponent<SpriteRenderer>();
+        furniture.AddComponent<BoxCollider>();
+
+        //Load a texture and create a sprite from it, and apply said sprite to the Sprite Renderer component.
+        Texture2D tex = Resources.Load<Texture2D>("Sprites/Furniture/" + f.furnitureType.name);
+        sr.sprite = Sprite.Create(tex, new Rect(0f, 0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), tileScale);
+        sr.sortingLayerName = "Furniture";
+
+        furniture.transform.position = f.position;
+        furniture.transform.rotation *= f.orientation;
+
+        return furniture;
+    }
+
 }

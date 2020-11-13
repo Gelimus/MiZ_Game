@@ -97,7 +97,6 @@ public class UIController : MonoBehaviour
         //TODO: part of the cleaning of the double font variable.
         mF = mainFont;
         //FOR TESTING PURPOSES, fake room selected
-        ChangeSelectedRoom(new Room("Bedroom"));
         currentParty = new Party();
     }
 
@@ -121,17 +120,20 @@ public class UIController : MonoBehaviour
     /// when a new room is selected
     /// </summary>
     /// <param name="newRoom">The reference to the new selected room</param>
-    private void ChangeSelectedRoom(Room newRoom)
+    public void ChangeSelectedRoom(Room newRoom)
     {
         selectedRoom = newRoom;
         ((Text)SelectedLocationName.GetComponent("Text")).text = selectedRoom.Name;
         furnitureReference = new Dictionary<GameObject, Furniture>();
-
-        foreach(Furniture f in selectedRoom.furnitures)
+        foreach(Transform child in RightPanel.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+        foreach(Furniture f in selectedRoom.furniture)
         {
             
             GameObject furniturePanel = GameObject.Instantiate(FurniturePanelPrefab, RightPanel.transform);
-            ((Text)furniturePanel.GetComponentInChildren<Text>()).text = f.furnitureType.Name;
+            ((Text)furniturePanel.GetComponentInChildren<Text>()).text = f.name;
             ((Button)furniturePanel.GetComponentInChildren<Button>()).onClick.AddListener(delegate { ShowFurnitureItems(furniturePanel); });
 
             furnitureReference.Add(furniturePanel, f);
@@ -223,7 +225,7 @@ public class UIController : MonoBehaviour
 
         if (furniturePanel.transform.childCount < 2)
         {
-            Debug.LogWarning("The item visuals of a furniture: " + furniture.furnitureType.Name + " were attempted to be updated, when they were never displayed in the first place." +
+            Debug.LogWarning("The item visuals of a furniture: " + furniture.furnitureType.PrintableName + " were attempted to be updated, when they were never displayed in the first place." +
                 "This is a normal behaviour but may indicate some unforseen interactions in the future.");
             return;
         }
