@@ -9,7 +9,7 @@ public class KeyboardMouseController : MonoBehaviour
 {
     Vector3 oldMousePosition;
     //The higher number the less sensitive the pan. Used for panning by mouse dragging
-    int cameraPanSensitivity = 120;
+    int cameraPanSensitivity = 90;
     bool dragStarted = false;
     float dragDelay = 0.12f;
     float clickDuration;
@@ -88,10 +88,9 @@ public class KeyboardMouseController : MonoBehaviour
                 {
                     if (rh[i].collider.gameObject.name == "InnerMapHolder")
                     {
-                        Debug.Log(origin);
-                        Debug.Log(mapController.activeSite.map[(int)Mathf.Abs(origin.y - 0.5f), (int)(origin.x + 0.5f)].xCoord + " x " + (mapController.activeSite.map[(int)Mathf.Abs(origin.y - 0.5f), (int)(origin.x + 0.5f)].yCoord));
-                        uiController.ChangeSelectedRoom(mapController.activeSite.map[(int)Mathf.Abs(origin.y - 0.5f), (int)(origin.x + 0.5f)].room);
+                       uiController.ChangeSelectedRoom(mapController.activeSite.map[(int)Mathf.Abs(origin.y - 0.5f), (int)(origin.x + 0.5f)].room);
                     }
+
                     if(rh[i].collider.transform.parent.name== "furnitureHolder")
                     {
                         Debug.Log("I got a furniture! It is " + rh[i].collider.gameObject.name);

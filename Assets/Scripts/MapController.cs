@@ -61,8 +61,12 @@ public class MapController : MonoBehaviour
         Room bedroom = new Room(bedroomFurniture,"Bedroom");
 
         Room bathroom = new Room(new List<Furniture>(), "Bathroom");
+        Room balcony = new Room(new List<Furniture>(), "Balcony");
+        Room kitchen = new Room(new List<Furniture>(), "Kitchen");
+        Room livingRoom = new Room(new List<Furniture>(), "Living Room");
+        Room hall = new Room(new List<Furniture>(), "Hall");
 
-        Tile[,] testSiteMap = new Tile[12,7];
+        Tile[,] testSiteMap = new Tile[12,16];
 
         
         testSiteMap[0,0] = new Tile(bedroom, new bool[4] { true, true, false, false },null,null,null,"wood1",0,0);
@@ -72,7 +76,19 @@ public class MapController : MonoBehaviour
         testSiteMap[0,4] = new Tile(bedroom, new bool[4] { true, false, false, false }, null, null, null, "wood1", 0, 4);
         testSiteMap[0,5] = new Tile(bedroom, new bool[4] { true, false, false, false }, null, null, null, "wood1", 0, 5);
         testSiteMap[0,6] = new Tile(bedroom, new bool[4] { true, false, false, true }, null, null, null, "wood1", 0, 6);
-      
+        //---------------------------
+        testSiteMap[0, 7] = new Tile(balcony, new bool[4] { false, true, false, false }, new bool[4] { true, false, false, false }, null, null, "carpet01", 0, 7);
+        testSiteMap[0, 8] = new Tile(balcony, null, new bool[4] { true, false, false, false }, null, null, "carpet01", 0, 8);
+        testSiteMap[0, 9] = new Tile(balcony, null, new bool[4] { true, false, false, false }, null, null, "carpet01", 0, 9);
+        testSiteMap[0, 10] = new Tile(balcony, null, new bool[4] { true, false, false, false }, null, null, "carpet01", 0, 10);
+        testSiteMap[0, 11] = new Tile(balcony, null, new bool[4] { true, false, false, false }, null, null, "carpet01", 0, 11);
+        testSiteMap[0, 12] = new Tile(balcony, null, new bool[4] { true, false, false, false }, null, null, "carpet01", 0, 12);
+        testSiteMap[0, 13] = new Tile(balcony, null, new bool[4] { true, false, false, false }, null, null, "carpet01", 0, 13);
+        testSiteMap[0, 14] = new Tile(balcony, null, new bool[4] { true, false, false, false }, null, null, "carpet01", 0, 14);
+        testSiteMap[0, 15] = new Tile(balcony, new bool[4] { false, false, false, true }, new bool[4] { true, false, false, false }, null, null, "carpet01", 0, 15);
+
+        //---------------------------------------------------------------
+
         testSiteMap[1,0] = new Tile(bedroom, new bool[4] { false, true, false, false }, null, null, null, "wood1", -1, 0);
         testSiteMap[1,1] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -1, 1);
         testSiteMap[1,2] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -1, 2);
@@ -80,6 +96,18 @@ public class MapController : MonoBehaviour
         testSiteMap[1,4] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -1, 4);
         testSiteMap[1,5] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -1, 5);
         testSiteMap[1,6] = new Tile(bedroom, new bool[4] { false, false, false, true }, null, null, null, "wood1", -1, 6);
+        //---------------------------
+        testSiteMap[1, 7] = new Tile(balcony, new bool[4] { false, true, true, false }, null, null, null, "carpet01", -1, 7);
+        testSiteMap[1, 8] = new Tile(balcony, null, null, null, null, "carpet01", -1, 8);
+        testSiteMap[1, 9] = new Tile(balcony, null, null, null, null, "carpet01", -1, 9);
+        testSiteMap[1, 10] = new Tile(balcony, new bool[4] { false, false, true, false }, null, null, null, "carpet01", -1, 10);
+        testSiteMap[1, 11] = new Tile(balcony, new bool[4] { false, false, true, false }, null, null, null, "carpet01", -1, 11);
+        testSiteMap[1, 12] = new Tile(balcony, new bool[4] { false, false, true, false }, null, null, null, "carpet01", -1, 12);
+        testSiteMap[1, 13] = new Tile(balcony, null, null, new bool[4] { false, false, true, false }, new bool[4] { false, false, true, false }, "carpet01", -1, 13);
+        testSiteMap[1, 14] = new Tile(balcony, null, null, new bool[4] { false, false, true, false }, new bool[4] { false, false, true, false }, "carpet01", -1, 14);
+        testSiteMap[1, 15] = new Tile(balcony, new bool[4] { false, false, true, true }, null, null, null, "carpet01", -1, 15);
+
+        //---------------------------------------------------------------
 
         testSiteMap[2,0] = new Tile(bedroom, new bool[4] { false, true, false, false }, null, null, null, "wood1", -2, 0);
         testSiteMap[2,1] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -2, 1);
@@ -88,6 +116,19 @@ public class MapController : MonoBehaviour
         testSiteMap[2,4] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -2, 4);
         testSiteMap[2,5] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -2, 5);
         testSiteMap[2,6] = new Tile(bedroom, new bool[4] { false, false, false, true }, null, null, null, "wood1", -2, 6);
+        //---------------------------
+        testSiteMap[2, 7] = new Tile(kitchen, new bool[4] { true, true, false, false },null , null, null, "tiles01", -2, 7);
+        testSiteMap[2, 8] = new Tile(kitchen, null, new bool[4] { true, false, false, false }, null, null, "tiles01", -2, 8);
+        testSiteMap[2, 9] = new Tile(kitchen, null, new bool[4] { true, false, false, false }, null, null, "tiles01", -2, 9);
+        testSiteMap[2, 10] = new Tile(kitchen, new bool[4] { true, false, false, true }, null, null, null, "tiles01", -2, 10);
+        //---------------------------
+        testSiteMap[2, 11] = new Tile(livingRoom, new bool[4] { true, true, false, false }, null, null, null, "wood1", -2, 11);
+        testSiteMap[2, 12] = new Tile(livingRoom, new bool[4] { true, false, false, false }, null, null, null, "wood1", -2, 12);
+        testSiteMap[2, 13] = new Tile(livingRoom, null, null, new bool[4] { true, false, false, false }, new bool[4] { true, false, false, false }, "wood1", -2, 13);
+        testSiteMap[2, 14] = new Tile(livingRoom, null, null, new bool[4] { true, false, false, false }, new bool[4] { true, false, false, false }, "wood1", -2, 14);
+        testSiteMap[2, 15] = new Tile(livingRoom, new bool[4] { true, false, false, true }, null, null, null, "wood1", -2, 15);
+
+        //---------------------------------------------------------------
 
         testSiteMap[3,0] = new Tile(bedroom, new bool[4] { false, true, false, false }, null, null, null, "wood1", -3, 0);
         testSiteMap[3,1] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -3, 1);
@@ -96,6 +137,19 @@ public class MapController : MonoBehaviour
         testSiteMap[3,4] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -3, 4);
         testSiteMap[3,5] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -3, 5);
         testSiteMap[3,6] = new Tile(bedroom, new bool[4] { false, false, false, true }, null, null, null, "wood1", -3, 6);
+        //---------------------------
+        testSiteMap[3, 7] = new Tile(kitchen, new bool[4] { false, true, false, false }, null, null, null, "tiles01", -3, 7);
+        testSiteMap[3, 8] = new Tile(kitchen, null, null, null, null, "tiles01", -3, 8);
+        testSiteMap[3, 9] = new Tile(kitchen, null, null, null, null, "tiles01", -3, 9);
+        testSiteMap[3, 10] = new Tile(kitchen, new bool[4] { false, false, false, true }, null, null, null, "tiles01", -3, 10);
+        //---------------------------
+        testSiteMap[3, 11] = new Tile(livingRoom, new bool[4] { false, true, false, false }, null, null, null, "wood1", -3, 11);
+        testSiteMap[3, 12] = new Tile(livingRoom, null, null, null, null, "wood1", -3, 12);
+        testSiteMap[3, 13] = new Tile(livingRoom, null, null, null, null, "wood1", -3, 13);
+        testSiteMap[3, 14] = new Tile(livingRoom, null, null, null, null, "wood1", -3, 14);
+        testSiteMap[3, 15] = new Tile(livingRoom, new bool[4] { false, false, false, true }, null, null, null, "wood1", -3, 15);
+
+        //---------------------------------------------------------------
 
         testSiteMap[4,0] = new Tile(bedroom, new bool[4] { false, true, false, false }, null, null, null, "wood1", -4, 0);
         testSiteMap[4,1] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -4, 1);
@@ -104,6 +158,19 @@ public class MapController : MonoBehaviour
         testSiteMap[4,4] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -4, 4);
         testSiteMap[4,5] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -4, 5);
         testSiteMap[4,6] = new Tile(bedroom, new bool[4] { false, false, false, true }, null, null, null, "wood1", -4, 6);
+        //---------------------------
+        testSiteMap[4, 7] = new Tile(kitchen, new bool[4] { false, true, false, false }, null, null, null, "tiles01", -4, 7);
+        testSiteMap[4, 8] = new Tile(kitchen, null, null, null, null, "tiles01", -4, 8);
+        testSiteMap[4, 9] = new Tile(kitchen, null, null, null, null, "tiles01", -4, 9);
+        testSiteMap[4, 10] = new Tile(kitchen, new bool[4] { false, false, false, true }, null, null, null, "tiles01", -4, 10);
+        //---------------------------
+        testSiteMap[4, 11] = new Tile(livingRoom, new bool[4] { false, true, false, false }, null, null, null, "wood1", -4, 11);
+        testSiteMap[4, 12] = new Tile(livingRoom, null, null, null, null, "wood1", -4, 12);
+        testSiteMap[4, 13] = new Tile(livingRoom, null, null, null, null, "wood1", -4, 13);
+        testSiteMap[4, 14] = new Tile(livingRoom, null, null, null, null, "wood1", -4, 14);
+        testSiteMap[4, 15] = new Tile(livingRoom, new bool[4] { false, false, false, true }, null, null, null, "wood1", -4, 15);
+
+        //---------------------------------------------------------------
 
         testSiteMap[5,0] = new Tile(bedroom, new bool[4] { false, true, false, false }, null, null, null, "wood1", -5, 0);
         testSiteMap[5,1] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -5, 1);
@@ -112,6 +179,19 @@ public class MapController : MonoBehaviour
         testSiteMap[5,4] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -5, 4);
         testSiteMap[5,5] = new Tile(bedroom, new bool[4] { false, false, true, false }, null, null, null, "wood1", -5, 5);
         testSiteMap[5,6] = new Tile(bedroom, new bool[4] { false, false, true, true }, null, null, null, "wood1", -5, 6);
+        //---------------------------
+        testSiteMap[5, 7] = new Tile(kitchen, new bool[4] { false, true, false, false }, null, null, null, "tiles01", -5, 7);
+        testSiteMap[5, 8] = new Tile(kitchen, null, null, null, null, "tiles01", -5, 8);
+        testSiteMap[5, 9] = new Tile(kitchen, null, null, null, null, "tiles01", -5, 9);
+        testSiteMap[5, 10] = new Tile(kitchen, new bool[4] { false, false, false, true }, null, null, null, "tiles01", -5, 10);
+        //---------------------------
+        testSiteMap[5, 11] = new Tile(livingRoom, new bool[4] { false, true, false, false }, null, null, null, "wood1", -5, 11);
+        testSiteMap[5, 12] = new Tile(livingRoom, null, null, null, null, "wood1", -5, 12);
+        testSiteMap[5, 13] = new Tile(livingRoom, null, null, null, null, "wood1", -5, 13);
+        testSiteMap[5, 14] = new Tile(livingRoom, null, null, null, null, "wood1", -5, 14);
+        testSiteMap[5, 15] = new Tile(livingRoom, new bool[4] { false, false, false, true }, null, null, null, "wood1", -5, 15);
+
+        //---------------------------------------------------------------
 
         testSiteMap[6,0] = new Tile(bedroom, new bool[4] { false, true, false, false }, null, null, null, "wood1", -6, 0);
         testSiteMap[6,1] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -6, 1);
@@ -120,6 +200,19 @@ public class MapController : MonoBehaviour
         testSiteMap[6,4] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -6, 4);
         testSiteMap[6,5] = new Tile(bedroom, new bool[4] { true, false, false, false }, null, null, null, "wood1", -6, 5);
         testSiteMap[6,6] = new Tile(bedroom, new bool[4] { true, false, false, true }, null, null, null, "wood1", -6, 6);
+        //---------------------------
+        testSiteMap[6, 7] = new Tile(kitchen, new bool[4] { false, true, false, false }, null, null, null, "tiles01", -6, 7);
+        testSiteMap[6, 8] = new Tile(kitchen, null, null, null, null, "tiles01", -6, 8);
+        testSiteMap[6, 9] = new Tile(kitchen, null, null, null, null, "tiles01", -6, 9);
+        testSiteMap[6, 10] = new Tile(kitchen, new bool[4] { false, false, false, true }, null, null, null, "tiles01", -6, 10);
+        //---------------------------
+        testSiteMap[6, 11] = new Tile(livingRoom, new bool[4] { false, true, false, false }, null, null, null, "wood1", -6, 11);
+        testSiteMap[6, 12] = new Tile(livingRoom, null, null, null, null, "wood1", -6, 12);
+        testSiteMap[6, 13] = new Tile(livingRoom, null, null, null, null, "wood1", -6, 13);
+        testSiteMap[6, 14] = new Tile(livingRoom, null, null, null, null, "wood1", -6, 14);
+        testSiteMap[6, 15] = new Tile(livingRoom, new bool[4] { false, false, false, true }, null, null, null, "wood1", -6, 15);
+
+        //---------------------------------------------------------------
 
         testSiteMap[7,0] = new Tile(bedroom, new bool[4] { false, true, false, false }, null, null, null, "wood1", -7, 0);
         testSiteMap[7,1] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -7, 1);
@@ -128,6 +221,19 @@ public class MapController : MonoBehaviour
         testSiteMap[7,4] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -7, 4);
         testSiteMap[7,5] = new Tile(bedroom, new bool[4] { false, false, false, false }, null, null, null, "wood1", -7, 5);
         testSiteMap[7,6] = new Tile(bedroom, new bool[4] { false, false, false, true }, null, null, null, "wood1", -7, 6);
+        //---------------------------
+        testSiteMap[7, 7] = new Tile(kitchen, new bool[4] { false, true, true, false }, null, null, null, "tiles01", -7, 7);
+        testSiteMap[7, 8] = new Tile(kitchen, null, null, new bool[4] { false, false, true, false }, null, "tiles01", -7, 8);
+        testSiteMap[7, 9] = new Tile(kitchen, new bool[4] { false, false, true, false }, null, null, null, "tiles01", -7, 9);
+        testSiteMap[7, 10] = new Tile(kitchen, new bool[4] { false, false, true, true }, null, null, null, "tiles01", -7, 10);
+        //---------------------------
+        testSiteMap[7, 11] = new Tile(livingRoom, new bool[4] { false, true, false, false }, null, null, null, "wood1", -7, 11);
+        testSiteMap[7, 12] = new Tile(livingRoom, null, null, null, null, "wood1", -7, 12);
+        testSiteMap[7, 13] = new Tile(livingRoom, null, null, null, null, "wood1", -7, 13);
+        testSiteMap[7, 14] = new Tile(livingRoom, null, null, null, null, "wood1", -7, 14);
+        testSiteMap[7, 15] = new Tile(livingRoom, new bool[4] { false, false, false, true }, null, null, null, "wood1", -7, 15);
+
+        //---------------------------------------------------------------
 
         testSiteMap[8,0] = new Tile(bedroom, new bool[4] { false, true, true, false }, null, null, null, "wood1", -8, 0);
         testSiteMap[8,1] = new Tile(bedroom, new bool[4] { false, false, true, false }, null, null, null, "wood1", -8, 1);
@@ -136,7 +242,19 @@ public class MapController : MonoBehaviour
         testSiteMap[8,4] = new Tile(bedroom, new bool[4] { false, false, true, false }, null, null, null, "wood1", -8, 4);
         testSiteMap[8,5] = new Tile(bedroom, new bool[4] { false, false, true, false }, null, null, null, "wood1", -8, 5);
         testSiteMap[8,6] = new Tile(bedroom, new bool[4] { false, false, true, false }, null,new bool[4] { false, false, false, true } , new bool[4] { false, false, false, true }, "wood1", -8, 6);
+        //---------------------------
+        testSiteMap[8, 7] = new Tile(hall, new bool[4] { true, false, false, false }, null, new bool[4] { false, true, false, false }, new bool[4] { false, true, false, false }, "tiles01", -8, 7);
+        testSiteMap[8, 8] = new Tile(hall, null, null, new bool[4] { true, false, false, false }, null, "tiles01", -8, 8);
+        testSiteMap[8, 9] = new Tile(hall, new bool[4] { true, false, false, false }, null, null, null, "tiles01", -8, 9);
+        testSiteMap[8, 10] = new Tile(hall, new bool[4] { true, false, false, true }, null, null, null, "tiles01", -8, 10);
+        //---------------------------
+        testSiteMap[8, 11] = new Tile(livingRoom, new bool[4] { false, true, false, false }, null, null, null, "wood1", -8, 11);
+        testSiteMap[8, 12] = new Tile(livingRoom, null, null, null, null, "wood1", -8, 12);
+        testSiteMap[8, 13] = new Tile(livingRoom, null, null, null, null, "wood1", -8, 13);
+        testSiteMap[8, 14] = new Tile(livingRoom, null, null, null, null, "wood1", -8, 14);
+        testSiteMap[8, 15] = new Tile(livingRoom, new bool[4] { false, false, false, true }, null, null, null, "wood1", -8, 15);
 
+        //---------------------------------------------------------------
 
         testSiteMap[9, 0] = new Tile(bathroom, new bool[4] { true, true, false, false }, null, null, null, "tiles01", -9, 0);
         testSiteMap[9, 1] = new Tile(bathroom, new bool[4] { true, false, false, false }, null, null, null, "tiles01", -9, 1);
@@ -145,7 +263,19 @@ public class MapController : MonoBehaviour
         testSiteMap[9, 4] = new Tile(bathroom, new bool[4] { true, false, false, false }, null, null, null, "tiles01", -9, 4);
         testSiteMap[9, 5] = new Tile(bathroom, new bool[4] { true, false, false, false }, null, null, null, "tiles01", -9, 5);
         testSiteMap[9, 6] = new Tile(bathroom, new bool[4] { true, false, false, false }, null, new bool[4] { false, false, false, true }, new bool[4] { false, false, false, true }, "tiles01", -9, 6);
+        //---------------------------
+        testSiteMap[9, 7] = new Tile(hall, null, null, new bool[4] { false, true, false, false }, new bool[4] { false, true, false, false }, "tiles01", -9, 7);
+        testSiteMap[9, 8] = new Tile(hall, null, null, null, null, "tiles01", -9, 8);
+        testSiteMap[9, 9] = new Tile(hall, null, null, null, null, "tiles01", -9, 9);
+        testSiteMap[9, 10] = new Tile(hall, null, null, new bool[4] { false, false, false, true }, null, "tiles01", -9, 10);
+        //---------------------------
+        testSiteMap[9, 11] = new Tile(livingRoom, null, null, new bool[4] { false, true, false, false }, null, "wood1", -9, 11);
+        testSiteMap[9, 12] = new Tile(livingRoom, null, null, null, null, "wood1", -9, 12);
+        testSiteMap[9, 13] = new Tile(livingRoom, null, null, null, null, "wood1", -9, 13);
+        testSiteMap[9, 14] = new Tile(livingRoom, null, null, null, null, "wood1", -9, 14);
+        testSiteMap[9, 15] = new Tile(livingRoom, new bool[4] { false, false, false, true }, null, null, null, "wood1", -9, 15);
 
+        //---------------------------------------------------------------
 
         testSiteMap[10, 0] = new Tile(bathroom, new bool[4] { false, true, false, false }, null, null, null, "tiles01", -10, 0);
         testSiteMap[10, 1] = new Tile(bathroom, new bool[4] { false, false, false, false }, null, null, null, "tiles01", -10, 1);
@@ -154,7 +284,19 @@ public class MapController : MonoBehaviour
         testSiteMap[10, 4] = new Tile(bathroom, new bool[4] { false, false, false, false }, null, null, null, "tiles01", -10, 4);
         testSiteMap[10, 5] = new Tile(bathroom, new bool[4] { false, false, false, false }, null, null, null, "tiles01", -10, 5);
         testSiteMap[10, 6] = new Tile(bathroom, new bool[4] { false, false, false, true }, null, null, null, "tiles01", -10, 6);
+        //---------------------------
+        testSiteMap[10, 7] = new Tile(hall, new bool[4] { false, true, false, false }, null, null, null, "tiles01", -10, 7);
+        testSiteMap[10, 8] = new Tile(hall, null, null, null, null, "tiles01", -10, 8);
+        testSiteMap[10, 9] = new Tile(hall, null, null, null, null, "tiles01", -10, 9);
+        testSiteMap[10, 10] = new Tile(hall, new bool[4] { false, false, false, true }, null, null, null, "tiles01", -10, 10);
+        //---------------------------
+        testSiteMap[10, 11] = new Tile(livingRoom, new bool[4] { false, true, false, false }, null, null, null, "wood1", -10, 11);
+        testSiteMap[10, 12] = new Tile(livingRoom, null, null, null, null, "wood1", -10, 12);
+        testSiteMap[10, 13] = new Tile(livingRoom, null, null, null, null, "wood1", -10, 13);
+        testSiteMap[10, 14] = new Tile(livingRoom, null, null, null, null, "wood1", -10, 14);
+        testSiteMap[10, 15] = new Tile(livingRoom, new bool[4] { false, false, false, true }, null, null, null, "wood1", -10, 15);
 
+        //---------------------------------------------------------------
 
         testSiteMap[11, 0] = new Tile(bathroom, new bool[4] { false, true, true, false }, null, null, null, "tiles01", -11, 0);
         testSiteMap[11, 1] = new Tile(bathroom, new bool[4] { false, false, true, false }, null, null, null, "tiles01", -11, 1);
@@ -163,9 +305,22 @@ public class MapController : MonoBehaviour
         testSiteMap[11, 4] = new Tile(bathroom, new bool[4] { false, false, true, false }, null, null, null, "tiles01", -11, 4);
         testSiteMap[11, 5] = new Tile(bathroom, new bool[4] { false, false, true, false }, null, null, null, "tiles01", -11, 5);
         testSiteMap[11, 6] = new Tile(bathroom, new bool[4] { false, false, true, true }, null, null, null, "tiles01", -11, 6);
+        //---------------------------
+        testSiteMap[11, 7] = new Tile(hall, new bool[4] { false, true, true, false }, null, null, null, "tiles01", -11, 7);
+        testSiteMap[11, 8] = new Tile(hall, null, null, new bool[4] { false, false, true, false }, new bool[4] { false, false, true, false }, "tiles01", -11, 8);
+        testSiteMap[11, 9] = new Tile(hall, new bool[4] { false, false, true, false }, null, null, null, "tiles01", -11, 9);
+        testSiteMap[11, 10] = new Tile(hall, new bool[4] { false, false, true, true }, null, null, null, "tiles01", -11, 10);
+        //---------------------------
+        testSiteMap[11, 11] = new Tile(livingRoom, new bool[4] { false, true, true, false }, null, null, null, "wood1", -11, 11);
+        testSiteMap[11, 12] = new Tile(livingRoom, new bool[4] { false, false, true, false }, null, null, null, "wood1", -11, 12);
+        testSiteMap[11, 13] = new Tile(livingRoom, new bool[4] { false, false, true, false }, null, null, null, "wood1", -11, 13);
+        testSiteMap[11, 14] = new Tile(livingRoom, new bool[4] { false, false, true, false }, null, null, null, "wood1", -11, 14);
+        testSiteMap[11, 15] = new Tile(livingRoom, new bool[4] { false, false, true, true }, null, null, null, "wood1", -11, 15);
+
+        //---------------------------------------------------------------
 
 
-        Site testMap = new Site(new Room[]{ bedroom },testSiteMap,7,12);
+        Site testMap = new Site(new Room[]{ bedroom },testSiteMap,16,12);
         activeSite = testMap;
 
         DrawMap(testMap);
@@ -439,7 +594,8 @@ public class MapController : MonoBehaviour
     {
         GameObject furniture = new GameObject(f.furnitureType.PrintableName);
         SpriteRenderer sr = furniture.AddComponent<SpriteRenderer>();
-        furniture.AddComponent<BoxCollider>();
+        BoxCollider bc= furniture.AddComponent<BoxCollider>();
+        bc.size = f.furnitureType.size;
 
         //Load a texture and create a sprite from it, and apply said sprite to the Sprite Renderer component.
         Texture2D tex = Resources.Load<Texture2D>("Sprites/Furniture/" + f.furnitureType.name);

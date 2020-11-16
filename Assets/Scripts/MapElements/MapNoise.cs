@@ -10,11 +10,15 @@ public class MapNoise : MonoBehaviour
 
     // The number of cycles of the basic noise pattern that are repeated
     // over the width and height of the texture.
-    private float resolution = 0.2f;
+    private float resolution = 0.05f;
 
-    private float transparency =0.2f;
+    private float opacity =0.25f;
 
-    private float colorVariance = 0.25f;
+    private float colorVariance =0.1f;
+
+    private float greenBias = 0f;
+    private float redBias = 0f;
+    private float blueBias = 0.3f;
 
     //KONIEC POKRĘTEŁ
 
@@ -48,9 +52,9 @@ public class MapNoise : MonoBehaviour
 
     void CalcNoise()
     {
-        float redOffset = Random.Range(0f, colorVariance);
-        float greenOffset = Random.Range(0f, colorVariance);
-        float blueOffset = Random.Range(0f, colorVariance);
+        float redOffset = Random.Range(0f, (colorVariance+redBias));
+        float greenOffset = Random.Range(0f, (colorVariance+greenBias));
+        float blueOffset = Random.Range(0f, (colorVariance+blueBias));
 
         Debug.Log("Making Noise! ("+ noiseTex.height + " x "+ noiseTex.width + ")");
 
@@ -65,7 +69,7 @@ public class MapNoise : MonoBehaviour
                 float greenNoise = Mathf.PerlinNoise(xCoord * greenOffset, yCoord * greenOffset);
                 float blueNoise = Mathf.PerlinNoise(xCoord * blueOffset, yCoord * blueOffset);
 
-                pix[y * noiseTex.width + (int)x] = new Color(redNoise, greenNoise, blueNoise, sample*transparency);
+                pix[y * noiseTex.width + (int)x] = new Color(redNoise, greenNoise, blueNoise, sample*opacity);
             }
         }
 
