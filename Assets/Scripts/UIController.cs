@@ -160,7 +160,7 @@ public class UIController : MonoBehaviour
         }
 
 
-        foreach (FurnitureAction fa in f.furnitureType.actions)
+        foreach (FurnitureAction fa in f.actions)
         {
             if (fa.Enabled)
             {
@@ -182,7 +182,7 @@ public class UIController : MonoBehaviour
     }
     
 
-    //A STUPID VARIABLE FOR A STUPID SOLUTION TODO: FIX
+    //A STUPID VARIABLE FOR A STUPID SOLUTION TODO: FIX THIS BS
     private static float TMPFixForStupidBUG = 0f;
     /// <summary>
     /// A function that is called when a panel of a furniture is clicked to show or hide all items contained within.
